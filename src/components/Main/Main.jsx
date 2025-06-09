@@ -1,3 +1,5 @@
+import WeatherCard from "../WeatherCard/WeatherCard";
+
 function Main() {
   return (
     <main>
@@ -6,3 +8,5 @@ function Main() {
     </main>
   );
 }
+
+export default Main;

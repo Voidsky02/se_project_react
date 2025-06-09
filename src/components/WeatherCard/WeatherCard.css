@@ -1,0 +1,16 @@
+.weatherCard {
+  background-image: url("src/images/day-cloudy.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.weatherCard__temperature {
+  font-size: 36px;
+  line-height: 40px;
+  color: #ffffff;
+  display: inline-block;
+  margin: 0;
+}
