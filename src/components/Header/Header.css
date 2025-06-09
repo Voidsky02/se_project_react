@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__button {
+  cursor: pointer;
+}
+
+/* Transport the below styles to its own user.css stylesheet in future */
+.user {
+  display: flex;
+  gap: 12px;
+}
+
+.user__name {
+  text-align: center;
+  text-wrap: nowrap;
+}
