@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.footer__signature {
+  margin: 0;
+}
+
+.footer__date {
+  margin: 0;
+}
