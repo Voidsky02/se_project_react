@@ -1,11 +1,11 @@
 import { weatherApiKey } from "./constants.js";
 
-function getWeatherData(locationlatitude, locationlongitude) {
+async function getWeatherData(locationlatitude, locationlongitude) {
   const latitude = locationlatitude;
   const longitude = locationlongitude;
   const weatherApiRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey}`;
 
-  return fetch(`${weatherApiRequest}`, {})
+  return await fetch(`${weatherApiRequest}`, {})
     .then((res) => {
       if (res.status === 200) {
         return res.json();
@@ -14,12 +14,6 @@ function getWeatherData(locationlatitude, locationlongitude) {
       }
     })
     .then((data) => {
-      //   const extractedData = {
-      //     cityName: `${data.name}`,
-      //     temperature: `${data.main.temp}`,
-      //     weather: data.weather[0],
-      //   };
-
       return data;
     })
     .catch((err) => {
@@ -29,19 +23,19 @@ function getWeatherData(locationlatitude, locationlongitude) {
     });
 }
 
-function extractData(apiCall) {
+async function filterWeatherData(apiCall) {
+  const response = await apiCall;
 
-    const response = await apiCall;
-  //   const extractedData = {
-  //     cityName: `${apiCall.name}`,
-  //     temperature: `${apiCall.main.temp}`,
-  //     weather: apiCall.weather[0],
-  //   };
+  console.log(`This is from inside filter function : ${response}`);
 
-  console.log(apiCall);
-  //   console.log(extractedData);
+  const extractedData = {
+    cityName: `${response.name}`,
+    // temperature: `${response.main.temp}`,
+    // weather: response.weather[0],
+  };
 
-  //   return extractedData;
+  //   console.log(extractedData.cityName);
+  return extractedData;
 }
 
-export { getWeatherData, extractData };
+export { getWeatherData, filterWeatherData };

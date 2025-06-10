@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { getWeatherData, extractData } from "../../utils/weatherApi.js";
+import { getWeatherData, filterWeatherData } from "../../utils/weatherApi.js";
 import { location } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -12,13 +12,22 @@ import Footer from "../Footer/Footer";
 // );
 // console.log(locationInfo);
 
-extractData(getWeatherData(location.latitude, location.longitude));
+// console.log(
+//   filterWeatherData(getWeatherData(location.latitude, location.longitude))
+// );
+
+const test = filterWeatherData(
+  getWeatherData(location.latitude, location.longitude)
+);
+console.log(`this is from test: ${test}`);
 
 function App() {
-  // useEffect(() => {
-  //   const locationInfo = getWeatherData(location.latitude, location.longitude);
-  //   console.log(locationInfo);
-  // }, []);
+  useEffect(() => {
+    // const locationInfo = filterWeatherData(
+    //   getWeatherData(location.latitude, location.longitude)
+    // );
+    // console.log(locationInfo);
+  }, []);
 
   return (
     <>
