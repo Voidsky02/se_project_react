@@ -1,11 +1,11 @@
 import { weatherApiKey } from "./constants.js";
 
-async function getWeatherData(locationlatitude, locationlongitude) {
+function getWeatherData(locationlatitude, locationlongitude) {
   const latitude = locationlatitude;
   const longitude = locationlongitude;
   const weatherApiRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey}`;
 
-  return await fetch(`${weatherApiRequest}`, {})
+  return fetch(`${weatherApiRequest}`, {})
     .then((res) => {
       if (res.status === 200) {
         return res.json();
@@ -14,7 +14,8 @@ async function getWeatherData(locationlatitude, locationlongitude) {
       }
     })
     .then((data) => {
-      return data;
+      let filteredData = filterWeatherData(data);
+      return filteredData;
     })
     .catch((err) => {
       if (err === 401) {
@@ -23,18 +24,13 @@ async function getWeatherData(locationlatitude, locationlongitude) {
     });
 }
 
-async function filterWeatherData(apiCall) {
-  const response = await apiCall;
-
-  console.log(`This is from inside filter function : ${response}`);
-
+function filterWeatherData(response) {
   const extractedData = {
     cityName: `${response.name}`,
-    // temperature: `${response.main.temp}`,
-    // weather: response.weather[0],
+    temperature: `${response.main.temp}`,
+    weather: response.weather[0],
   };
 
-  //   console.log(extractedData.cityName);
   return extractedData;
 }
 

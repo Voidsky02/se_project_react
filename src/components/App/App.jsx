@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { getWeatherData, filterWeatherData } from "../../utils/weatherApi.js";
+import { getWeatherData } from "../../utils/weatherApi.js";
 import { location } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -16,17 +16,26 @@ import Footer from "../Footer/Footer";
 //   filterWeatherData(getWeatherData(location.latitude, location.longitude))
 // );
 
-const test = filterWeatherData(
-  getWeatherData(location.latitude, location.longitude)
-);
-console.log(`this is from test: ${test}`);
+// async function test() {
+//   let bruh = await getWeatherData(location.latitude, location.longitude);
+//   return bruh;
+// }
+
+// let weatherInfo = await getWeatherData(location.latitude, location.longitude);
+
+// console.log(weatherInfo);
+// console.log(weatherInfo.cityName);
+// console.log(weatherInfo.temperature);
+
+// console.log(`this is from test: ${test}`);
 
 function App() {
+  const [weatherData, setWeatherData] = useState({});
+
   useEffect(() => {
-    // const locationInfo = filterWeatherData(
-    //   getWeatherData(location.latitude, location.longitude)
-    // );
-    // console.log(locationInfo);
+    getWeatherData(20.7503, -156.5003).then((data) => {
+      setWeatherData(data);
+    });
   }, []);
 
   return (
