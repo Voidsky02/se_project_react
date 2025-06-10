@@ -1,11 +1,7 @@
-function WeatherCard(props) {
-  // will replace this with an API call in the future
-  let weatherData = props.tempature;
-
+function WeatherCard({ temperature }) {
   return (
     <div className="weatherCard">
-      {/* use weatherData when the API is set up */}
-      <p className="weatherCard__temperature">75°F</p>
+      <p className="weatherCard__temperature">{`${temperature}°F`}</p>
     </div>
   );
 }

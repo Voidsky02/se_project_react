@@ -30,11 +30,14 @@ import Footer from "../Footer/Footer";
 // console.log(`this is from test: ${test}`);
 
 function App() {
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     getWeatherData(20.7503, -156.5003).then((data) => {
       setWeatherData(data);
+      console.log(data.cityName);
+      console.log(data.temperature);
+      console.log(data.weather);
     });
   }, []);
 
@@ -42,7 +45,7 @@ function App() {
     <>
       <div className="page">
         <Header />
-        <Main />
+        {weatherData && <Main weatherData={weatherData} />}
         <Footer />
       </div>
     </>

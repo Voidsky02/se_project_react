@@ -1,9 +1,9 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 
-function Main() {
+function Main({ weatherData }) {
   return (
     <main>
-      <WeatherCard />
+      <WeatherCard temperature={weatherData.temperature} />
       {/* ItemCard ?????? */}
     </main>
   );
