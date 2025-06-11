@@ -1,7 +1,7 @@
-function ItemCard({ itemName, itemImage }) {
+function ItemCard({ itemName, itemImage, handleCardClick }) {
   return (
     <>
-      <div className="item__card">
+      <div onClick={handleCardClick} className="item__card">
         <h2 className="item__name">{`${itemName}`}</h2>
         <img className="item__image" src={itemImage} />
       </div>

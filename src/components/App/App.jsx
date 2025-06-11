@@ -10,6 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(null);
+  const [isItemModalOpened, setIsItemModalOpened] = useState(false);
 
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude).then((data) => {
@@ -18,14 +19,32 @@ function App() {
     setClothingItems(defaultClothingItems);
   }, []);
 
+  // 3 functions - openModal, closeModal, and one that changes state
+  // function that takes the state as argument (if true openModal, if false closeModal)
+  function openModal() {
+    setIsItemModalOpened(true);
+  }
+
+  function closeModal() {
+    setIsItemModalOpened(false);
+  }
+
+  function handleCardClick() {
+    openModal();
+  }
+
   return (
     <>
       <div className="page">
         {weatherData && <Header cityName={weatherData.cityName} />}
         {weatherData && clothingItems && (
-          <Main weatherData={weatherData} clothingItems={clothingItems} />
+          <Main
+            weatherData={weatherData}
+            clothingItems={clothingItems}
+            handleCardClick={handleCardClick}
+          />
         )}
-        <ItemModal />
+        {isItemModalOpened && <ItemModal />}
         <Footer />
       </div>
     </>

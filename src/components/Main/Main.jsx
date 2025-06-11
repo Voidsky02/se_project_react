@@ -1,7 +1,7 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, clothingItems }) {
+function Main({ weatherData, clothingItems, handleCardClick }) {
   // pass handleCardClick() to onChange property of ItemCard element / will be recieved from App
   return (
     <main className="main">
@@ -14,7 +14,7 @@ function Main({ weatherData, clothingItems }) {
               key={item._id}
               itemName={item.name}
               itemImage={item.link}
-              // onClick={handleCardClick}
+              handleCardClick={handleCardClick}
             />
           );
         })}
