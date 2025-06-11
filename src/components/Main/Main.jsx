@@ -14,6 +14,7 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
               key={item._id}
               itemName={item.name}
               itemImage={item.link}
+              itemWeather={item.weather}
               handleCardClick={handleCardClick}
             />
           );

@@ -11,6 +11,11 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(null);
   const [isItemModalOpened, setIsItemModalOpened] = useState(false);
+  const [itemModalData, setItemModalData] = useState({
+    title: "",
+    image: "",
+    weather: "",
+  });
 
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude).then((data) => {
@@ -29,7 +34,13 @@ function App() {
     setIsItemModalOpened(false);
   }
 
-  function handleCardClick() {
+  function handleCardClick(data) {
+    setItemModalData({
+      title: `${data.title}`,
+      image: `${data.image}`,
+      weather: `${data.weather}`,
+    });
+    console.log(itemModalData);
     openModal();
   }
 
@@ -44,7 +55,14 @@ function App() {
             handleCardClick={handleCardClick}
           />
         )}
-        {isItemModalOpened && <ItemModal closeModal={closeModal} />}
+        {isItemModalOpened && (
+          <ItemModal
+            title={itemModalData.title}
+            image={itemModalData.image}
+            weather={itemModalData.weather}
+            closeModal={closeModal}
+          />
+        )}
         <Footer />
       </div>
     </>
