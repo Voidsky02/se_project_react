@@ -36,12 +36,20 @@
   width: fit-content;
   overflow: hidden;
   border-radius: 16px;
+  font-family: "Cabinet Grotesk Bold";
   font-size: 20px;
   line-height: 24px;
 }
 
 .item-modal__image {
   margin-bottom: 20px;
+}
+
+.item-modal__close-btn {
+  width: 20px;
+  height: 20px;
+  top: 24px;
+  right: 24px;
 }
 
 .item-modal__title {
