@@ -1,10 +1,10 @@
-function Header() {
+function Header({ cityName }) {
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-  const location = "Temp Location";
+  const location = cityName;
   const userPicture = "src/images/temp-profile-pic.svg";
 
   return (
