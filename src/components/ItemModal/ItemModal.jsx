@@ -1,4 +1,4 @@
-function ItemModal() {
+function ItemModal({ closeModal }) {
   const itemModalImage =
     "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591";
   const itemModalTitle = "Cap";
@@ -14,6 +14,7 @@ function ItemModal() {
         <button
           className="modal__close-btn item-modal__close-btn"
           type="button"
+          onClick={closeModal}
         ></button>
         <img className="item-modal__image" src={itemModalImage} />
         <h3 className="item-modal__title">{itemModalTitle}</h3>

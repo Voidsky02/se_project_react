@@ -44,7 +44,7 @@ function App() {
             handleCardClick={handleCardClick}
           />
         )}
-        {isItemModalOpened && <ItemModal />}
+        {isItemModalOpened && <ItemModal closeModal={closeModal} />}
         <Footer />
       </div>
     </>
