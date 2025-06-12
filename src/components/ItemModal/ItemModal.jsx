@@ -1,6 +1,13 @@
-function ItemModal({ title, image, weather, closeModal }) {
+function ItemModal({ title, image, weather, closeModal, handleEscapeClose }) {
   return (
-    <div className="modal modal_opened">
+    <div
+      className="modal modal_opened"
+      onClick={(evt) => {
+        if (evt.target.classList.contains("modal")) {
+          closeModal();
+        }
+      }}
+    >
       <div className="modal__container">
         <button
           className="modal__close-btn item-modal__close-btn"

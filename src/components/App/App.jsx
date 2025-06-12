@@ -28,10 +28,18 @@ function App() {
   // function that takes the state as argument (if true openModal, if false closeModal)
   function openModal() {
     setIsItemModalOpened(true);
+    document.addEventListener("keydown", handleEscapeClose);
   }
 
   function closeModal() {
     setIsItemModalOpened(false);
+    document.removeEventListener("keydown", handleEscapeClose);
+  }
+
+  function handleEscapeClose(evt) {
+    if (evt.key === "Escape") {
+      closeModal();
+    }
   }
 
   function handleCardClick(data) {
@@ -40,7 +48,6 @@ function App() {
       image: `${data.image}`,
       weather: `${data.weather}`,
     });
-    console.log(itemModalData);
     openModal();
   }
 
