@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -42,6 +43,12 @@ function App() {
     }
   }
 
+  function handleOffModalClick(evt) {
+    if (evt.target.classList.contains("modal")) {
+      closeModal();
+    }
+  }
+
   function handleCardClick(data) {
     setItemModalData({
       title: `${data.title}`,
@@ -68,8 +75,13 @@ function App() {
             image={itemModalData.image}
             weather={itemModalData.weather}
             closeModal={closeModal}
+            handleOffModalClick={handleOffModalClick}
           />
         )}
+        <ModalWithForm
+          closeModal={closeModal}
+          handleOffModalClick={handleOffModalClick}
+        />
         <Footer />
       </div>
     </>
