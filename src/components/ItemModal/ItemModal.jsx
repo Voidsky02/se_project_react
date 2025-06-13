@@ -1,7 +1,7 @@
 function ItemModal({ title, image, weather, closeModal, handleOffModalClick }) {
   return (
     <div className="modal modal_opened" onClick={handleOffModalClick}>
-      <div className="modal__container">
+      <div className="modal__container modal__container_type_item-modal">
         <button
           className="modal__close-btn item-modal__close-btn"
           type="button"

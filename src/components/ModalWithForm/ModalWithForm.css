@@ -1,0 +1,35 @@
+.modal__container_type_add-clothes {
+}
+
+.form-modal__close-btn {
+  background-image: url("src/images/close-btn-grey.svg");
+  width: 20px;
+  height: 20px;
+}
+
+.form-modal__title {
+  margin: 0 0 24px 0;
+}
+
+.add-clothes__form_element {
+  margin: 0 0 24px 0;
+}
+
+.add-clothes__label {
+  display: block;
+  margin: 0 0 8px 0;
+}
+
+.add-clothes__input {
+  display: block;
+}
+
+.add-clothes__weather_container {
+  margin: 0 0 32px 0;
+}
+
+.add-clothes__radio-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 8px 0;
+}

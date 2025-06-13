@@ -79,9 +79,74 @@ function App() {
           />
         )}
         <ModalWithForm
+          title={`New garmet`}
+          name={`add-clothes`}
+          buttonText={`Add garmet`}
           closeModal={closeModal}
           handleOffModalClick={handleOffModalClick}
-        />
+        >
+          <div className="add-clothes__form_element">
+            <label className="add-clothes__label" htmlFor="add-clothes__name">
+              Name
+            </label>
+            <input
+              className="add-clothes__input"
+              id="add-clothes__name"
+              name="add-clothes__name"
+              type="text"
+              placeholder="Name"
+              required
+            ></input>
+          </div>
+          <div className="add-clothes__form_element">
+            <label className="add-clothes__label" htmlFor="add-clothes__image">
+              Image
+            </label>
+            <input
+              className="add-clothes__input"
+              id="add-clothes__image"
+              name="add-clothes__image"
+              type="url"
+              placeholder="Image URL"
+              required
+            ></input>
+          </div>
+          <div className="add-clothes__weather_container">
+            <label className="add-clothes__label">
+              Select the weather type:
+            </label>
+            <div className="add-clothes__radio-container">
+              <input
+                className="add-clothes__input"
+                id="hot"
+                name="weather"
+                type="radio"
+                value="hot"
+              ></input>
+              <label htmlFor="hot">Hot</label>
+            </div>
+            <div className="add-clothes__radio-container">
+              <input
+                className="add-clothes__input"
+                id="warm"
+                name="weather"
+                type="radio"
+                value="warm"
+              ></input>
+              <label htmlFor="warm">Warm</label>
+            </div>
+            <div className="add-clothes__radio-container">
+              <input
+                className="add-clothes__input"
+                id="cold"
+                name="weather"
+                type="radio"
+                value="cold"
+              ></input>
+              <label htmlFor="cold">Cold</label>
+            </div>
+          </div>
+        </ModalWithForm>
         <Footer />
       </div>
     </>
