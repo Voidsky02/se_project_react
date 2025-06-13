@@ -90,7 +90,7 @@ function App() {
               Name
             </label>
             <input
-              className="add-clothes__input"
+              className="add-clothes__input add-clothes__input_type_text"
               id="add-clothes__name"
               name="add-clothes__name"
               type="text"
@@ -103,7 +103,7 @@ function App() {
               Image
             </label>
             <input
-              className="add-clothes__input"
+              className="add-clothes__input add-clothes__input_type_text"
               id="add-clothes__image"
               name="add-clothes__image"
               type="url"
@@ -123,7 +123,9 @@ function App() {
                 type="radio"
                 value="hot"
               ></input>
-              <label htmlFor="hot">Hot</label>
+              <label className="add-clothes__label_type_radio" htmlFor="hot">
+                Hot
+              </label>
             </div>
             <div className="add-clothes__radio-container">
               <input
@@ -133,7 +135,9 @@ function App() {
                 type="radio"
                 value="warm"
               ></input>
-              <label htmlFor="warm">Warm</label>
+              <label className="add-clothes__label_type_radio" htmlFor="warm">
+                Warm
+              </label>
             </div>
             <div className="add-clothes__radio-container">
               <input
@@ -143,7 +147,9 @@ function App() {
                 type="radio"
                 value="cold"
               ></input>
-              <label htmlFor="cold">Cold</label>
+              <label className="add-clothes__label_type_radio" htmlFor="cold">
+                Cold
+              </label>
             </div>
           </div>
         </ModalWithForm>

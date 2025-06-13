@@ -2,6 +2,7 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
+  max-width: 496px;
 }
 
 .form-modal__close-btn {
@@ -27,6 +28,12 @@
   display: block;
 }
 
+.add-clothes__input_type_text {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 .add-clothes__weather_container {
   margin: 0 0 32px 0;
 }
@@ -34,5 +41,24 @@
 .add-clothes__radio-container {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   margin: 0 0 8px 0;
+}
+
+.add-clothes__input_type_radio {
+}
+
+.add-clothes__label_type_radio {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+input[type="radio"]:checked + label {
+  color: rgba(0, 0, 0, 1);
+}
+
+.form-modal__submit-btn {
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 4px;
 }
