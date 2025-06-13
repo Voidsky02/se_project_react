@@ -31,7 +31,7 @@
 .add-clothes__input_type_text {
   width: 100%;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
 .add-clothes__weather_container {
@@ -43,9 +43,6 @@
   flex-direction: row;
   gap: 8px;
   margin: 0 0 8px 0;
-}
-
-.add-clothes__input_type_radio {
 }
 
 .add-clothes__label_type_radio {
