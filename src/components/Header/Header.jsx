@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // also import sunrise and sunset from API
-function Header({ cityName, openClothesModal }) {
+function Header({ countryName, cityName, openClothesModal }) {
   // const [dayOrNight, setDayOrNight] = useState(null);
 
   const siteLogo = "src/images/site-logo.svg";
@@ -9,7 +9,7 @@ function Header({ cityName, openClothesModal }) {
     month: "long",
     day: "numeric",
   });
-  const location = cityName;
+  const location = `${cityName} (${countryName})`;
   const userPicture = "src/images/temp-profile-pic.svg";
 
   return (

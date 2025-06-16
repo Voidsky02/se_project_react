@@ -69,6 +69,7 @@ function App() {
       <div className="page">
         {weatherData && (
           <Header
+            countryName={weatherData.countryName}
             cityName={weatherData.cityName}
             openClothesModal={openClothesModal}
           />

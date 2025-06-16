@@ -26,6 +26,7 @@ function getWeatherData(locationlatitude, locationlongitude) {
 
 function filterWeatherData(response) {
   const extractedData = {
+    countryName: `${response.sys.country}`,
     cityName: `${response.name}`,
     temperature: `${response.main.temp}`,
     weather: response.weather[0],

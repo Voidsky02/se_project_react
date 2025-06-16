@@ -2,24 +2,23 @@ import { useState, useEffect } from "react";
 
 function WeatherCard({ temperature, weather }) {
   const [currentBanner, setCurrentBanner] = useState("");
-  // pretend way to sort day/night and weather conditions
-  // if weather.icon[2] === 'd' {weatherBanners.day.blah blah blah}
+
   const weatherBanners = {
     day: {
-      clear: "",
-      cloudy: "",
-      rain: "",
-      storm: "",
-      snow: "",
-      fog: "",
+      clear: "src/images/day-clear.svg",
+      cloudy: "src/images/day-cloudy.svg",
+      rain: "src/images/day-rain.svg",
+      storm: "src/images/day-storm.svg",
+      snow: "src/images/day-snow.svg",
+      fog: "src/images/day-fog.svg",
     },
     night: {
-      clear: "",
-      cloudy: "",
-      rain: "",
-      storm: "",
-      snow: "",
-      fog: "",
+      clear: "src/images/night-clear.svg",
+      cloudy: "src/images/night-cloudy.svg",
+      rain: "src/images/night-rain.svg",
+      storm: "src/images/night-storm.svg",
+      snow: "src/images/night-snow.svg",
+      fog: "src/images/night-fog.svg",
     },
   };
 
@@ -56,7 +55,7 @@ function WeatherCard({ temperature, weather }) {
   }, []);
 
   return (
-    // set src to currentTimeAdnWeather
+    // takes its url from 'currentBanner' state
     <div
       className="weatherCard"
       style={{ backgroundImage: `url('${currentBanner}')` }}
