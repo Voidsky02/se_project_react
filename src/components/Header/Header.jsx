@@ -1,4 +1,9 @@
+import { useState, useEffect } from "react";
+
+// also import sunrise and sunset from API
 function Header({ cityName, openClothesModal }) {
+  // const [dayOrNight, setDayOrNight] = useState(null);
+
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
