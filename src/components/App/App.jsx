@@ -11,12 +11,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(null);
-  const [isItemModalOpened, setIsItemModalOpened] = useState(false);
   const [itemModalData, setItemModalData] = useState({
     title: "",
     image: "",
     weather: "",
   });
+  // above modal states will probably be deleted
+  const [openModal, setOpenModal] = useState(null);
 
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude).then((data) => {
@@ -25,28 +26,20 @@ function App() {
     setClothingItems(defaultClothingItems);
   }, []);
 
-  // 3 functions - openModal, closeModal, and one that changes state
-  // function that takes the state as argument (if true openModal, if false closeModal)
-  function openModal() {
-    setIsItemModalOpened(true);
-    document.addEventListener("keydown", handleEscapeClose);
+  // NEW OPEN AND CLOSE MODAL FUNCTIONS
+  function openItemModal() {
+    setOpenModal("item");
+  }
+
+  function openClothesModal() {
+    setOpenModal("add-clothes");
   }
 
   function closeModal() {
-    setIsItemModalOpened(false);
-    document.removeEventListener("keydown", handleEscapeClose);
-  }
-
-  function handleEscapeClose(evt) {
-    if (evt.key === "Escape") {
-      closeModal();
-    }
-  }
-
-  function handleOffModalClick(evt) {
-    if (evt.target.classList.contains("modal")) {
-      closeModal();
-    }
+    // change to just setOpenModal(null); i think this must still be function
+    // so i can pass it down to other components
+    setOpenModal(null);
+    // document.removeEventListener("keydown", handleEscapeClose);
   }
 
   function handleCardClick(data) {
@@ -55,13 +48,31 @@ function App() {
       image: `${data.image}`,
       weather: `${data.weather}`,
     });
-    openModal();
+    setOpenModal("item");
   }
+
+  function handleOffModalClick(evt) {
+    if (evt.target.classList.contains("modal")) {
+      closeModal();
+    }
+  }
+
+  const handleEscapeClose = (evt) => {
+    if (evt.key === "Escape") {
+      closeModal();
+      console.log("TEST TEST");
+    }
+  };
 
   return (
     <>
       <div className="page">
-        {weatherData && <Header cityName={weatherData.cityName} />}
+        {weatherData && (
+          <Header
+            cityName={weatherData.cityName}
+            openClothesModal={openClothesModal}
+          />
+        )}
         {weatherData && clothingItems && (
           <Main
             weatherData={weatherData}
@@ -69,90 +80,99 @@ function App() {
             handleCardClick={handleCardClick}
           />
         )}
-        {isItemModalOpened && (
+        {openModal === "item" && (
           <ItemModal
             title={itemModalData.title}
             image={itemModalData.image}
             weather={itemModalData.weather}
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
+            handleEscapeClose={handleEscapeClose}
           />
         )}
-        <ModalWithForm
-          title={`New garmet`}
-          name={`add-clothes`}
-          buttonText={`Add garmet`}
-          closeModal={closeModal}
-          handleOffModalClick={handleOffModalClick}
-        >
-          <div className="add-clothes__form_element">
-            <label className="add-clothes__label" htmlFor="add-clothes__name">
-              Name
-            </label>
-            <input
-              className="add-clothes__input add-clothes__input_type_text"
-              id="add-clothes__name"
-              name="add-clothes__name"
-              type="text"
-              placeholder="Name"
-              required
-            ></input>
-          </div>
-          <div className="add-clothes__form_element">
-            <label className="add-clothes__label" htmlFor="add-clothes__image">
-              Image
-            </label>
-            <input
-              className="add-clothes__input add-clothes__input_type_text"
-              id="add-clothes__image"
-              name="add-clothes__image"
-              type="url"
-              placeholder="Image URL"
-              required
-            ></input>
-          </div>
-          <div className="add-clothes__weather_container">
-            <label className="add-clothes__label">
-              Select the weather type:
-            </label>
-            <div className="add-clothes__radio-container">
-              <input
-                className="add-clothes__input"
-                id="hot"
-                name="weather"
-                type="radio"
-                value="hot"
-              ></input>
-              <label className="add-clothes__label_type_radio" htmlFor="hot">
-                Hot
+        {openModal === "add-clothes" && (
+          <ModalWithForm
+            title={`New garmet`}
+            name={`add-clothes`}
+            buttonText={`Add garmet`}
+            closeModal={closeModal}
+            handleOffModalClick={handleOffModalClick}
+            handleEscapeClose={handleEscapeClose}
+          >
+            <div className="add-clothes__form_element">
+              <label className="add-clothes__label" htmlFor="add-clothes__name">
+                Name
               </label>
-            </div>
-            <div className="add-clothes__radio-container">
+              {/* create a function to provide error messages then.... */}
+              {/* use the function on the input's onChange prop */}
               <input
-                className="add-clothes__input"
-                id="warm"
-                name="weather"
-                type="radio"
-                value="warm"
+                className="add-clothes__input add-clothes__input_type_text"
+                id="add-clothes__name"
+                name="add-clothes__name"
+                type="text"
+                placeholder="Name"
+                required
               ></input>
-              <label className="add-clothes__label_type_radio" htmlFor="warm">
-                Warm
-              </label>
             </div>
-            <div className="add-clothes__radio-container">
+            <div className="add-clothes__form_element">
+              <label
+                className="add-clothes__label"
+                htmlFor="add-clothes__image"
+              >
+                Image
+              </label>
               <input
-                className="add-clothes__input"
-                id="cold"
-                name="weather"
-                type="radio"
-                value="cold"
+                className="add-clothes__input add-clothes__input_type_text"
+                id="add-clothes__image"
+                name="add-clothes__image"
+                type="url"
+                placeholder="Image URL"
+                required
               ></input>
-              <label className="add-clothes__label_type_radio" htmlFor="cold">
-                Cold
-              </label>
             </div>
-          </div>
-        </ModalWithForm>
+            <div className="add-clothes__weather_container">
+              <label className="add-clothes__label">
+                Select the weather type:
+              </label>
+              <div className="add-clothes__radio-container">
+                <input
+                  className="add-clothes__input"
+                  id="hot"
+                  name="weather"
+                  type="radio"
+                  value="hot"
+                ></input>
+                <label className="add-clothes__label_type_radio" htmlFor="hot">
+                  Hot
+                </label>
+              </div>
+              <div className="add-clothes__radio-container">
+                <input
+                  className="add-clothes__input"
+                  id="warm"
+                  name="weather"
+                  type="radio"
+                  value="warm"
+                ></input>
+                <label className="add-clothes__label_type_radio" htmlFor="warm">
+                  Warm
+                </label>
+              </div>
+              <div className="add-clothes__radio-container">
+                <input
+                  className="add-clothes__input"
+                  id="cold"
+                  name="weather"
+                  type="radio"
+                  value="cold"
+                ></input>
+                <label className="add-clothes__label_type_radio" htmlFor="cold">
+                  Cold
+                </label>
+              </div>
+            </div>
+          </ModalWithForm>
+        )}
         <Footer />
       </div>
     </>

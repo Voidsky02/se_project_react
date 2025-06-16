@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 function ModalWithForm({
   children,
   title,
@@ -5,7 +7,17 @@ function ModalWithForm({
   buttonText,
   closeModal,
   handleOffModalClick,
+  handleEscapeClose,
 }) {
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeClose);
+    //
+    // how to pass current state of this modal to the closeModal() func
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  }, []);
+
   return (
     <div
       // replace test with the name prop

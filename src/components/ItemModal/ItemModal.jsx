@@ -1,4 +1,21 @@
-function ItemModal({ title, image, weather, closeModal, handleOffModalClick }) {
+import { useState, useEffect } from "react";
+
+function ItemModal({
+  title,
+  image,
+  weather,
+  closeModal,
+  handleOffModalClick,
+  handleEscapeClose,
+}) {
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  }, []);
+
   return (
     <div className="modal modal_opened" onClick={handleOffModalClick}>
       <div className="modal__container modal__container_type_item-modal">

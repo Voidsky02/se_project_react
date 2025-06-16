@@ -1,4 +1,4 @@
-function Header({ cityName }) {
+function Header({ cityName, openClothesModal }) {
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -15,7 +15,11 @@ function Header({ cityName }) {
           <p className="header__date-location">{`${currentDate}, ${location}`}</p>
         </div>
         <div className="header__right-side">
-          <p className="header__button" type="button">
+          <p
+            className="header__button"
+            type="button"
+            onClick={openClothesModal}
+          >
             + Add Clothes
           </p>
           {/* should i make the user element a componenet?? */}
