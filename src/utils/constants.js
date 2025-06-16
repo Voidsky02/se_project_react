@@ -7,10 +7,6 @@ const location = {
   longitude: -156.5003,
 };
 
-// hawaii coords below:
-// latitude: 20.7503,
-// longitude: -156.5003,
-
 // array of clothing item objects
 const defaultClothingItems = [
   {
