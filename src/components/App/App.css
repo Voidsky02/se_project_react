@@ -1,6 +1,6 @@
 .page {
   padding: 32px 40px 0;
   /* now only font-size, height and spacing will need to be written for elements */
-  font-family: "Cabinet Grotesk Regular";
+  font-family: "Cabinet Grotesk Regular", Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
