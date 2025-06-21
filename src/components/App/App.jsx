@@ -10,20 +10,25 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [clothingItems, setClothingItems] = useState(null);
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [itemModalData, setItemModalData] = useState({
     title: "",
     image: "",
     weather: "",
   });
   // above modal states will probably be deleted
-  const [openModal, setOpenModal] = useState(null);
+  const [openModal, setOpenModal] = useState("");
+  // dont know how bottom cpde will be implemented
+  // const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    getWeatherData(location.latitude, location.longitude).then((data) => {
-      setWeatherData(data);
-    });
-    setClothingItems(defaultClothingItems);
+    getWeatherData(location.latitude, location.longitude)
+      .then((data) => {
+        setWeatherData(data);
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
   }, []);
 
   // NEW OPEN AND CLOSE MODAL FUNCTIONS
@@ -38,7 +43,7 @@ function App() {
   function closeModal() {
     // change to just setOpenModal(null); i think this must still be function
     // so i can pass it down to other components
-    setOpenModal(null);
+    setOpenModal("");
     // document.removeEventListener("keydown", handleEscapeClose);
   }
 
@@ -60,7 +65,6 @@ function App() {
   const handleEscapeClose = (evt) => {
     if (evt.key === "Escape") {
       closeModal();
-      console.log("TEST TEST");
     }
   };
 
@@ -93,9 +97,9 @@ function App() {
         )}
         {openModal === "add-clothes" && (
           <ModalWithForm
-            title={`New garmet`}
-            name={`add-clothes`}
-            buttonText={`Add garmet`}
+            title={"New garmet"}
+            name={"add-clothes"}
+            buttonText={"Add garmet"}
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
             handleEscapeClose={handleEscapeClose}

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 // also import sunrise and sunset from API
 function Header({ countryName, cityName, openClothesModal }) {
   // const [dayOrNight, setDayOrNight] = useState(null);
@@ -27,7 +25,8 @@ function Header({ countryName, cityName, openClothesModal }) {
           >
             + Add Clothes
           </p>
-          {/* should i make the user element a componenet?? */}
+          {/* Was told I may be right in making User a component, */}
+          {/* but for now, it is not required */}
           <div className="user">
             <p className="user__name">Terrence Tegegne</p>
             <img

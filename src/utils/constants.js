@@ -47,4 +47,6 @@ const defaultClothingItems = [
   },
 ];
 
+const weatherOptions = {};
+
 export { weatherApiKey, location, defaultClothingItems };
