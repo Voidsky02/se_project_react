@@ -8,6 +8,7 @@ function ModalWithForm({
   closeModal,
   handleOffModalClick,
   handleEscapeClose,
+  openModal,
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
@@ -21,7 +22,9 @@ function ModalWithForm({
   return (
     <div
       // replace test with the name prop
-      className={`modal modal_opened modal_type_${name}`}
+      className={`modal ${
+        openModal === "add-clothes" && "modal_opened"
+      } modal_type_${name}`}
       onClick={handleOffModalClick}
     >
       <div className={`modal__container modal__container_type_${name}`}>
