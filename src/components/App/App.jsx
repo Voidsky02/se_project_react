@@ -54,7 +54,7 @@ function App() {
       image: `${data.image}`,
       weather: `${data.weather}`,
     });
-    setOpenModal("item");
+    openItemModal();
   }
 
   function handleOffModalClick(evt) {

@@ -21,7 +21,6 @@ function ModalWithForm({
 
   return (
     <div
-      // replace test with the name prop
       className={`modal ${
         openModal === "add-clothes" && "modal_opened"
       } modal_type_${name}`}
