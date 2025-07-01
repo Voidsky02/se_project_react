@@ -19,7 +19,8 @@ function App() {
   // above modal states will probably be deleted
   const [openModal, setOpenModal] = useState("");
   // dont know how bottom cpde will be implemented
-  // const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState("");
+  // mabey set isOpen to the name of the modal i want to open
 
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude)
@@ -93,6 +94,7 @@ function App() {
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
             handleEscapeClose={handleEscapeClose}
+            openModal={openModal}
           />
         )}
         {openModal === "add-clothes" && (
@@ -103,6 +105,7 @@ function App() {
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
             handleEscapeClose={handleEscapeClose}
+            openModal={openModal}
           >
             <div className="add-clothes__form_element">
               <label className="add-clothes__label" htmlFor="add-clothes__name">
