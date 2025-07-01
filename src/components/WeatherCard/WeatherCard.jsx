@@ -24,13 +24,11 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
 
   // pass it weather.icon[2] & weather.id
   function setWeatherBanner(currentTime, currentWeather) {
-    // will rewrite this code using .find() to find correct banner out of array
-    //
     let locationTime = "";
     if (currentTime === "d") {
-      locationTime = "day";
+      locationTime = true;
     } else {
-      locationTime = "night";
+      locationTime = false;
     }
 
     let locationWeather = "";
@@ -48,13 +46,16 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
       locationWeather = "storm";
     }
 
-    setCurrentBanner(weatherBanners[locationTime][locationWeather]);
+    let selectedBanner = weatherOptions.find((item) => {
+      return item.day === locationTime && item.condition === locationWeather;
+    });
+
+    setCurrentBanner(selectedBanner.url);
   }
 
   // setWeatherBanner is the function, setCurrentBanner is the setState
   useEffect(() => {
     setWeatherBanner(weather.icon[2], weather.id);
-    console.log(weather);
   }, []);
 
   return (
