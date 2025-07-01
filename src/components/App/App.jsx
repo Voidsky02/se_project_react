@@ -16,11 +16,7 @@ function App() {
     image: "",
     weather: "",
   });
-  // above modal states will probably be deleted
   const [openModal, setOpenModal] = useState("");
-  // dont know how bottom cpde will be implemented
-  // const [isOpen, setIsOpen] = useState("");
-  // mabey set isOpen to the name of the modal i want to open
 
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude)
@@ -32,7 +28,6 @@ function App() {
       });
   }, []);
 
-  // NEW OPEN AND CLOSE MODAL FUNCTIONS
   function openItemModal() {
     setOpenModal("item");
   }
@@ -42,10 +37,7 @@ function App() {
   }
 
   function closeModal() {
-    // change to just setOpenModal(null); i think this must still be function
-    // so i can pass it down to other components
     setOpenModal("");
-    // document.removeEventListener("keydown", handleEscapeClose);
   }
 
   function handleCardClick(data) {

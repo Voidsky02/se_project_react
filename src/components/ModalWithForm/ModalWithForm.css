@@ -58,4 +58,5 @@ input[type="radio"]:checked + label {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
   border-radius: 4px;
+  cursor: pointer;
 }
