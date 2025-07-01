@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function WeatherCard({ temperature, weather }) {
+function WeatherCard({ temperature, weather, weatherOptions }) {
   const [currentBanner, setCurrentBanner] = useState("");
 
   const weatherBanners = {
@@ -24,6 +24,8 @@ function WeatherCard({ temperature, weather }) {
 
   // pass it weather.icon[2] & weather.id
   function setWeatherBanner(currentTime, currentWeather) {
+    // will rewrite this code using .find() to find correct banner out of array
+    //
     let locationTime = "";
     if (currentTime === "d") {
       locationTime = "day";
@@ -52,6 +54,7 @@ function WeatherCard({ temperature, weather }) {
   // setWeatherBanner is the function, setCurrentBanner is the setState
   useEffect(() => {
     setWeatherBanner(weather.icon[2], weather.id);
+    console.log(weather);
   }, []);
 
   return (

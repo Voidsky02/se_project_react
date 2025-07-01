@@ -1,13 +1,14 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, clothingItems, handleCardClick }) {
+function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
   // pass handleCardClick() to onChange property of ItemCard element / will be recieved from App
   return (
     <main className="main">
       <WeatherCard
         temperature={weatherData.temperature}
         weather={weatherData.weather}
+        weatherOptions={weatherOptions}
       />
       <h2 className="main__title">{`Today is ${weatherData.temperature}° F / You may want to wear:`}</h2>
       <div className="cards__container">

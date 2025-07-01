@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi.js";
-import { location, defaultClothingItems } from "../../utils/constants.js";
+import {
+  location,
+  defaultClothingItems,
+  weatherOptions,
+} from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -74,6 +78,7 @@ function App() {
         {weatherData && clothingItems && (
           <Main
             weatherData={weatherData}
+            weatherOptions={weatherOptions}
             clothingItems={clothingItems}
             handleCardClick={handleCardClick}
           />
