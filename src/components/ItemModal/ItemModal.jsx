@@ -9,7 +9,7 @@ function ItemModal({
   closeModal,
   handleOffModalClick,
   handleEscapeClose,
-  openModal,
+  isOpen,
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
@@ -21,7 +21,7 @@ function ItemModal({
 
   return (
     <div
-      className={`modal ${openModal === "item" && "modal_opened"}`}
+      className={`modal ${isOpen && "modal_opened"}`}
       onClick={handleOffModalClick}
     >
       <div className="modal__container modal__container_type_item-modal">

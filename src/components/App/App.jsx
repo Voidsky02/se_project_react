@@ -91,7 +91,7 @@ function App() {
           closeModal={closeModal}
           handleOffModalClick={handleOffModalClick}
           handleEscapeClose={handleEscapeClose}
-          openModal={openModal}
+          isOpen={openModal === "item"}
         />
 
         <ModalWithForm
@@ -101,7 +101,7 @@ function App() {
           closeModal={closeModal}
           handleOffModalClick={handleOffModalClick}
           handleEscapeClose={handleEscapeClose}
-          openModal={openModal}
+          isOpen={openModal === "add-clothes"}
         >
           <div className="add-clothes__form_element">
             <label className="add-clothes__label" htmlFor="add-clothes__name">
