@@ -45,4 +45,4 @@ function temperatureCheck(temperature) {
   }
 }
 
-export { getWeatherData, filterWeatherData };
+export { getWeatherData, filterWeatherData, temperatureCheck };

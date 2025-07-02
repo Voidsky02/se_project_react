@@ -12,8 +12,8 @@ function ItemCard({ itemName, itemImage, itemWeather, handleCardClick }) {
         }}
         className="item__card"
       >
-        <h2 className="item__name">{`${itemName}`}</h2>
-        <img className="item__image" src={itemImage} alt={`${itemName}`} />
+        <h2 className="item__name">{itemName}</h2>
+        <img className="item__image" src={itemImage} alt={itemName} />
       </div>
     </>
   );
