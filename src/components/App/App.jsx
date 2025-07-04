@@ -11,7 +11,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { TemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -23,7 +23,7 @@ function App() {
   });
   const [openModal, setOpenModal] = useState("");
 
-  const [currentTemperatureState, setCurrentTemperatureState] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   // ToggleSwitch state
   const [checked, setChecked] = useState(false);
@@ -79,7 +79,7 @@ function App() {
   return (
     <>
       <TemperatureUnitContext.Provider
-      /*value={(currentTemperatureUnit, handleToggleSwitchChange)}*/
+        value={{ currentTemperatureUnit /*handleToggleSwitchChange*/ }}
       >
         <div className="page">
           {weatherData && (

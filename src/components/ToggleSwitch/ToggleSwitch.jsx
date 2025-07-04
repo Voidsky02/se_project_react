@@ -1,7 +1,10 @@
 import { useState } from "react";
+import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import "./ToggleSwitch.css";
 
 function ToggleSwitch({ label, value, onChange, onColor }) {
+  // this is work in progress v ***STEP 5***
+  // let currentTemperatureUnit = React.useContext(TemperatureUnitContext);
   return (
     <>
       <input
