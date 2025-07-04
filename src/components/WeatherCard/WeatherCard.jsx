@@ -45,7 +45,7 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
       className="weatherCard"
       style={{ backgroundImage: `url('${currentBanner}')` }}
     >
-      <p className="weatherCard__temperature">{`${temperature}°F`}</p>
+      <p className="weatherCard__temperature">{`${temperature.F}°F`}</p>
     </div>
   );
 }

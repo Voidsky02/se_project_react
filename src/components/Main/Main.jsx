@@ -16,7 +16,7 @@ function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
         weather={weatherData.weather}
         weatherOptions={weatherOptions}
       />
-      <h2 className="main__title">{`Today is ${weatherData.temperature}° F / You may want to wear:`}</h2>
+      <h2 className="main__title">{`Today is ${weatherData.temperature.F}° F / You may want to wear:`}</h2>
       <div className="cards__container">
         {filteredClothingItems.map((item) => {
           return (

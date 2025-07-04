@@ -28,7 +28,10 @@ function filterWeatherData(response) {
   const extractedData = {
     countryName: `${response.sys.country}`,
     cityName: `${response.name}`,
-    temperature: `${response.main.temp}`,
+    temperature: {
+      F: `${response.main.temp}`,
+      C: `${Math.round(((response.main.temp - 32) * 5) / 9)}`,
+    },
     weather: response.weather[0],
   };
 
