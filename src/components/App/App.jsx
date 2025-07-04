@@ -22,6 +22,14 @@ function App() {
   });
   const [openModal, setOpenModal] = useState("");
 
+  // ToggleSwitch state
+  const [checked, setChecked] = useState(false);
+
+  // ToggleSwitch onChange function
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude)
       .then((data) => {
@@ -73,6 +81,9 @@ function App() {
             countryName={weatherData.countryName}
             cityName={weatherData.cityName}
             openClothesModal={openClothesModal}
+            checked={checked}
+            onChange={handleChange}
+            onColor="#06D6A0"
           />
         )}
         {weatherData && clothingItems && (

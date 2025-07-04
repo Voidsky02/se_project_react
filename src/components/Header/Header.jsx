@@ -1,7 +1,13 @@
-// also import sunrise and sunset from API
-function Header({ countryName, cityName, openClothesModal }) {
-  // const [dayOrNight, setDayOrNight] = useState(null);
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
+function Header({
+  countryName,
+  cityName,
+  openClothesModal,
+  checked,
+  onChange,
+  onColor,
+}) {
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -18,6 +24,12 @@ function Header({ countryName, cityName, openClothesModal }) {
           <p className="header__date-location">{`${currentDate}, ${location}`}</p>
         </div>
         <div className="header__right-side">
+          <ToggleSwitch
+            label="F"
+            value={checked}
+            onChange={onChange}
+            onColor={onColor}
+          />
           <p
             className="header__button"
             type="button"
