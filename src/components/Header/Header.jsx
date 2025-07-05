@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({
@@ -20,7 +21,9 @@ function Header({
     <>
       <div className="header">
         <div className="header__left-side">
-          <img className="header__image" src={siteLogo} alt="site-logo" />
+          <Link to="/">
+            <img className="header__image" src={siteLogo} alt="site-logo" />
+          </Link>
           <p className="header__date-location">{`${currentDate}, ${location}`}</p>
         </div>
         <div className="header__right-side">
@@ -39,14 +42,16 @@ function Header({
           </p>
           {/* Was told I may be right in making User a component, */}
           {/* but for now, it is not required */}
-          <div className="user">
-            <p className="user__name">Terrence Tegegne</p>
-            <img
-              className="user__image"
-              src={userPicture}
-              alt="temporary user picture"
-            />
-          </div>
+          <Link to="/profile">
+            <div className="user">
+              <p className="user__name">Terrence Tegegne</p>
+              <img
+                className="user__image"
+                src={userPicture}
+                alt="temporary user picture"
+              />
+            </div>
+          </Link>
         </div>
       </div>
     </>
