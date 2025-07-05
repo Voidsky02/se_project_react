@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import "./ToggleSwitch.css";
 
 function ToggleSwitch({ label, value, onChange, onColor }) {
   // this is work in progress v ***STEP 5***
-  // let currentTemperatureUnit = React.useContext(TemperatureUnitContext);
+  const tempUnitContext = React.useContext(TemperatureUnitContext);
+
   return (
     <>
       <input
@@ -12,7 +13,10 @@ function ToggleSwitch({ label, value, onChange, onColor }) {
         id={`react-switch-new`}
         type="checkbox"
         checked={value}
-        onChange={onChange}
+        onChange={() => {
+          onChange();
+          tempUnitContext.handleToggleSwitchChange();
+        }}
       />
       <label
         style={{ background: value && onColor }}

@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function WeatherCard({ temperature, weather, weatherOptions }) {
+  const tempUnitContext = React.useContext(TemperatureUnitContext);
+
   const [currentBanner, setCurrentBanner] = useState("");
 
   // pass it weather.icon[2] & weather.id
@@ -45,7 +48,9 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
       className="weatherCard"
       style={{ backgroundImage: `url('${currentBanner}')` }}
     >
-      <p className="weatherCard__temperature">{`${temperature.F}°F`}</p>
+      <p className="weatherCard__temperature">{`${
+        temperature[tempUnitContext.currentTemperatureUnit]
+      }°${tempUnitContext.currentTemperatureUnit}`}</p>
     </div>
   );
 }

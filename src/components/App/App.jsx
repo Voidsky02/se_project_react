@@ -25,6 +25,13 @@ function App() {
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
+    console.log(currentTemperatureUnit);
+  };
+
   // ToggleSwitch state
   const [checked, setChecked] = useState(false);
 
@@ -79,7 +86,7 @@ function App() {
   return (
     <>
       <TemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit /*handleToggleSwitchChange*/ }}
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page">
           {weatherData && (
