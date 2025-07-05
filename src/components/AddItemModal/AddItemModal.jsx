@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -11,6 +11,16 @@ function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+
+  const resetInputs = () => {
+    setName("");
+    setImageUrl("");
+    setWeather("");
+  };
+
+  useEffect(() => {
+    isOpen ? resetInputs() : "";
+  }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -35,6 +45,7 @@ function AddItemModal({
           type="text"
           placeholder="Name"
           onChange={(evt) => setName(evt.target.value)}
+          value={name}
           required
         ></input>
       </div>
@@ -49,6 +60,7 @@ function AddItemModal({
           type="url"
           placeholder="Image URL"
           onChange={(evt) => setImageUrl(evt.target.value)}
+          value={imageUrl}
           required
         ></input>
       </div>
