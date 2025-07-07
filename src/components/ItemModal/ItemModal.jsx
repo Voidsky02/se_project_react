@@ -31,8 +31,11 @@ function ItemModal({
           onClick={closeModal}
         ></button>
         <img className="item-modal__image" src={image} alt={`${title}`} />
-        <h3 className="item-modal__title">{title}</h3>
-        <p className="item-modal__description">{`Weather: ${weather}`}</p>
+        <div className="item-modal__content">
+          <h3 className="item-modal__title">{title}</h3>
+          <button className="item-modal__delete-btn">Delete Item</button>
+          <p className="item-modal__description">{`Weather: ${weather}`}</p>
+        </div>
       </div>
     </div>
   );

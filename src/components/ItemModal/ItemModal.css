@@ -19,6 +19,11 @@
   right: 24px;
 }
 
+.item-modal__content {
+  display: flex;
+  flex-direction: column;
+}
+
 .item-modal__title {
   margin: 0;
   width: fit-content;
@@ -31,4 +36,10 @@
   width: fit-content;
   margin-bottom: 32px;
   margin-left: 32px;
+}
+
+.item-modal__delete-btn {
+  width: 101px;
+  align-self: flex-end;
+  justify-self: flex-start;
 }
