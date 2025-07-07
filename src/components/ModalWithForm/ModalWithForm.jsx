@@ -9,6 +9,7 @@ function ModalWithForm({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  handleSubmit,
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
@@ -34,7 +35,11 @@ function ModalWithForm({
         <form className="form-modal__form" name={name}>
           {children}
         </form>
-        <button className="form-modal__submit-btn" type="submit">
+        <button
+          className="form-modal__submit-btn"
+          type="submit"
+          onClick={handleSubmit}
+        >
           {buttonText}
         </button>
       </div>

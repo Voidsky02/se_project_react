@@ -85,6 +85,19 @@ function App() {
     }
   };
 
+  function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
+    // methods from api.js will go here later...
+
+    const item = {
+      // _id: clothingItems[clothingItems.length - 1]._id + 1, (mabey they will tell me how to add unique id later)
+      name: itemName,
+      weather: weatherTemp,
+      link: imageUrl,
+    };
+
+    setClothingItems([item, ...clothingItems]);
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -136,6 +149,7 @@ function App() {
               handleOffModalClick={handleOffModalClick}
               handleEscapeClose={handleEscapeClose}
               isOpen={openModal === "add-clothes"}
+              onAddItem={handleAdditemSubmit}
             />
 
             <Footer />

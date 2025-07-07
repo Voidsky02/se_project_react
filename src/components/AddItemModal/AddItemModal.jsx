@@ -7,6 +7,7 @@ function AddItemModal({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  onAddItem,
 }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -22,6 +23,11 @@ function AddItemModal({
     isOpen ? resetInputs() : "";
   }, [isOpen]);
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onAddItem(name, imageUrl, weather);
+  }
+
   return (
     <ModalWithForm
       title={"New garmet"}
@@ -31,6 +37,7 @@ function AddItemModal({
       handleOffModalClick={handleOffModalClick}
       handleEscapeClose={handleEscapeClose}
       isOpen={isOpen}
+      handleSubmit={handleSubmit}
     >
       <div className="add-clothes__form_element">
         <label className="add-clothes__label" htmlFor="add-clothes__name">
