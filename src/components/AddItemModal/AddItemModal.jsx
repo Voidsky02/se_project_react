@@ -74,6 +74,7 @@ function AddItemModal({
             type="radio"
             value="hot"
             onChange={(evt) => setWeather(evt.target.value)}
+            checked={weather === "hot"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="hot">
             Hot
@@ -87,6 +88,7 @@ function AddItemModal({
             type="radio"
             value="warm"
             onChange={(evt) => setWeather(evt.target.value)}
+            checked={weather === "warm"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="warm">
             Warm
@@ -100,6 +102,7 @@ function AddItemModal({
             type="radio"
             value="cold"
             onChange={(evt) => setWeather(evt.target.value)}
+            checked={weather === "cold"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="cold">
             Cold
