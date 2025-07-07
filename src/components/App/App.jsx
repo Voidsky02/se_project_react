@@ -96,6 +96,7 @@ function App() {
     };
 
     setClothingItems([item, ...clothingItems]);
+    closeModal();
   }
 
   return (
