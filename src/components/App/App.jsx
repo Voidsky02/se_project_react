@@ -11,6 +11,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
@@ -58,6 +59,11 @@ function App() {
 
   function openClothesModal() {
     setOpenModal("add-clothes");
+  }
+
+  function openConfirmationModal() {
+    setOpenModal("confirmation");
+    console.log("is this thing working?");
   }
 
   function closeModal() {
@@ -143,6 +149,14 @@ function App() {
               handleOffModalClick={handleOffModalClick}
               handleEscapeClose={handleEscapeClose}
               isOpen={openModal === "item"}
+              openConfirmationModal={openConfirmationModal}
+            />
+
+            <ConfirmationModal
+              closeModal={closeModal}
+              handleOffModalClick={handleOffModalClick}
+              handleEscapeClose={handleEscapeClose}
+              isOpen={openModal === "confirmation"}
             />
 
             <AddItemModal

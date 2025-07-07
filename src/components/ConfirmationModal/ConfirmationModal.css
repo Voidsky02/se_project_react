@@ -1,0 +1,12 @@
+.modal__container_type_confirmation {
+  width: 800px;
+  height: 800px;
+  background-color: blue;
+}
+
+.confirmation-modal__close-btn {
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: 20px;
+}

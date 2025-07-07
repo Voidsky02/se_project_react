@@ -10,6 +10,7 @@ function ItemModal({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  openConfirmationModal,
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
@@ -32,7 +33,12 @@ function ItemModal({
         ></button>
         <img className="item-modal__image" src={image} alt={`${title}`} />
         <h3 className="item-modal__title">{title}</h3>
-        <button className="item-modal__delete-btn">Delete Item</button>
+        <button
+          className="item-modal__delete-btn"
+          onClick={openConfirmationModal}
+        >
+          Delete Item
+        </button>
         <p className="item-modal__description">{`Weather: ${weather}`}</p>
       </div>
     </div>
