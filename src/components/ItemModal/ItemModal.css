@@ -6,6 +6,7 @@
   font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
+  position: relative;
 }
 
 .item-modal__image {
@@ -17,11 +18,6 @@
   height: 20px;
   top: 24px;
   right: 24px;
-}
-
-.item-modal__content {
-  display: flex;
-  flex-direction: column;
 }
 
 .item-modal__title {
@@ -40,6 +36,10 @@
 
 .item-modal__delete-btn {
   width: 101px;
-  align-self: flex-end;
-  justify-self: flex-start;
+  height: 24px;
+  position: absolute;
+  right: 32px;
+  bottom: 68px;
+  color: #ff4d00;
+  background-color: transparent;
 }
