@@ -51,7 +51,7 @@ function App() {
       .catch((err) => {
         console.error(`Error: ${err}`);
       });
-    // TEST TEST
+
     getClothingItems().then((data) => setClothingItems(data));
   }, []);
 
@@ -66,7 +66,6 @@ function App() {
   function openConfirmationModal() {
     setOpenModal("confirmation");
     setCardToBeDeleted(itemModalData.id);
-    console.log(clothingItems);
   }
 
   function closeModal() {
