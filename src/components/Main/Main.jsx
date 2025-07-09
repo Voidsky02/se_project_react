@@ -28,6 +28,7 @@ function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
           return (
             <ItemCard
               key={item._id}
+              id={item._id}
               itemName={item.name}
               itemImage={item.link}
               itemWeather={item.weather}

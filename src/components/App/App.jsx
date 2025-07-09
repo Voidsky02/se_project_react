@@ -24,8 +24,11 @@ function App() {
     title: "",
     image: "",
     weather: "",
+    id: "",
   });
   const [openModal, setOpenModal] = useState("");
+
+  const [cardToBeDeleted, setCardToBeDeleted] = useState(null);
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
@@ -63,10 +66,12 @@ function App() {
 
   function openConfirmationModal() {
     setOpenModal("confirmation");
+    setCardToBeDeleted(itemModalData.id);
   }
 
   function closeModal() {
     setOpenModal("");
+    setCardToBeDeleted(null);
   }
 
   function handleCardClick(data) {
@@ -74,6 +79,7 @@ function App() {
       title: `${data.title}`,
       image: `${data.image}`,
       weather: `${data.weather}`,
+      id: `${data.id}`,
     });
     openItemModal();
   }

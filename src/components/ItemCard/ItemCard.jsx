@@ -1,4 +1,4 @@
-function ItemCard({ itemName, itemImage, itemWeather, handleCardClick }) {
+function ItemCard({ itemName, itemImage, itemWeather, id, handleCardClick }) {
   return (
     <>
       <div
@@ -7,6 +7,7 @@ function ItemCard({ itemName, itemImage, itemWeather, handleCardClick }) {
             title: itemName,
             image: itemImage,
             weather: itemWeather,
+            id: id,
           };
           handleCardClick(itemModalInfo);
         }}

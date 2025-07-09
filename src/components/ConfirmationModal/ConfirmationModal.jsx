@@ -32,7 +32,9 @@ function ConfirmationModal({
           irreversible.
         </h2>
         <button className="confirmation__delete-btn">Yes, delete item</button>
-        <button className="confirmation__cancel-btn">Cancel</button>
+        <button className="confirmation__cancel-btn" onClick={closeModal}>
+          Cancel
+        </button>
       </div>
     </div>
   );
