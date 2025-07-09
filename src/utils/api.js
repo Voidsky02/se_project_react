@@ -9,19 +9,21 @@ function getClothingItems() {
 }
 
 // Ill be calling this when i submit a new item, i think it was AddItemModal
-function postClothingItem(itemName, imageLink, weatherTemp) {
+function postClothingItem(itemName, imageLink, weatherTemp, itemId) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      _id: "" /* Dont know what to make this yet */,
+      _id: itemId,
       name: itemName,
       weather: weatherTemp,
       imageUrl: imageLink,
     }),
   });
 }
+
+// STILL NEED TO CALL IT SOMEWHERE
 
 export { getClothingItems };
