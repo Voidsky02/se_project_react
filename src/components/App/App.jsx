@@ -24,7 +24,7 @@ function App() {
     title: "",
     image: "",
     weather: "",
-    id: "",
+    id: null,
   });
   const [openModal, setOpenModal] = useState("");
 
@@ -67,6 +67,7 @@ function App() {
   function openConfirmationModal() {
     setOpenModal("confirmation");
     setCardToBeDeleted(itemModalData.id);
+    console.log(clothingItems);
   }
 
   function closeModal() {
@@ -74,12 +75,22 @@ function App() {
     setCardToBeDeleted(null);
   }
 
+  function handleCardDelete(itemKey) {
+    // API call
+
+    setClothingItems(
+      clothingItems.filter((item) => item._id !== cardToBeDeleted)
+    );
+
+    closeModal();
+  }
+
   function handleCardClick(data) {
     setItemModalData({
       title: `${data.title}`,
       image: `${data.image}`,
       weather: `${data.weather}`,
-      id: `${data.id}`,
+      id: data.id,
     });
     openItemModal();
   }
@@ -162,6 +173,7 @@ function App() {
               handleOffModalClick={handleOffModalClick}
               handleEscapeClose={handleEscapeClose}
               isOpen={openModal === "confirmation"}
+              handleCardDelete={handleCardDelete}
             />
 
             <AddItemModal

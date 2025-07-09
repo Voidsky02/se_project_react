@@ -6,6 +6,7 @@ function ConfirmationModal({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  handleCardDelete,
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
@@ -31,7 +32,9 @@ function ConfirmationModal({
           Are you sure you want to delete this item?<br></br> This action is
           irreversible.
         </h2>
-        <button className="confirmation__delete-btn">Yes, delete item</button>
+        <button className="confirmation__delete-btn" onClick={handleCardDelete}>
+          Yes, delete item
+        </button>
         <button className="confirmation__cancel-btn" onClick={closeModal}>
           Cancel
         </button>
