@@ -1,12 +1,46 @@
-.modal__container_type_confirmation {
-  width: 800px;
-  height: 800px;
-  background-color: blue;
+.modal__container.modal__container_type_confirmation-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 670px;
+  padding: 60px 0;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
 }
 
-.confirmation-modal__close-btn {
+.modal__close-btn.confirmation-modal__close-btn {
   width: 20px;
   height: 20px;
   top: 20px;
   right: 20px;
+  background-image: url("src/images/close-btn-grey.svg");
+}
+
+.confirmation-modal__title {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 40px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.confirmation__delete-btn {
+  margin-bottom: 24px;
+  width: fit-content;
+  color: red;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.confirmation__cancel-btn {
+  width: fit-content;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
 }

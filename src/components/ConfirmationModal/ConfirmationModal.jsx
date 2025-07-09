@@ -27,8 +27,12 @@ function ConfirmationModal({
           type="button"
           onClick={closeModal}
         ></button>
-        <h2>IS THIS THING WOKRING</h2>
-        <p>HELLO WORLD!!!!</p>
+        <h2 className="confirmation-modal__title">
+          Are you sure you want to delete this item?<br></br> This action is
+          irreversible.
+        </h2>
+        <button className="confirmation__delete-btn">Yes, delete item</button>
+        <button className="confirmation__cancel-btn">Cancel</button>
       </div>
     </div>
   );
