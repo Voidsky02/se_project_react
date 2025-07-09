@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi.js";
-import {
-  location,
-  defaultClothingItems,
-  weatherOptions,
-} from "../../utils/constants.js";
+import { location, weatherOptions } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -16,10 +12,11 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
+import { getClothingItems } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState(null);
   const [itemModalData, setItemModalData] = useState({
     title: "",
     image: "",
@@ -54,6 +51,8 @@ function App() {
       .catch((err) => {
         console.error(`Error: ${err}`);
       });
+    // TEST TEST
+    getClothingItems().then((data) => setClothingItems(data));
   }, []);
 
   function openItemModal() {
