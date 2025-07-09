@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./ConfirmationModal.css";
 
-function ConfirmationModal(
+function ConfirmationModal({
   closeModal,
   handleOffModalClick,
   handleEscapeClose,
-  isOpen
-) {
+  isOpen,
+}) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
     // console.log(handleOffModalClick)
@@ -19,13 +19,13 @@ function ConfirmationModal(
   return (
     <div
       className={`modal ${isOpen && "modal_opened"}`}
-      //   onClick={handleOffModalClick}
+      onClick={handleOffModalClick}
     >
       <div className="modal__container modal__container_type_confirmation-modal">
         <button
           className="modal__close-btn confirmation-modal__close-btn"
           type="button"
-          //   onClick={closeModal}
+          onClick={closeModal}
         ></button>
         <h2>IS THIS THING WOKRING</h2>
         <p>HELLO WORLD!!!!</p>

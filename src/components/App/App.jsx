@@ -63,7 +63,6 @@ function App() {
 
   function openConfirmationModal() {
     setOpenModal("confirmation");
-    console.log("is this thing working?");
   }
 
   function closeModal() {
