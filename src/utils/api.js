@@ -8,4 +8,20 @@ function getClothingItems() {
     });
 }
 
+// Ill be calling this when i submit a new item, i think it was AddItemModal
+function postClothingItem(itemName, imageLink, weatherTemp) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      _id: "" /* Dont know what to make this yet */,
+      name: itemName,
+      weather: weatherTemp,
+      imageUrl: imageLink,
+    }),
+  });
+}
+
 export { getClothingItems };
