@@ -44,6 +44,10 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
     .catch((err) => console.error(`Failure to POST; ${err}`));
 }
 
+/* I must make it return a promise, so i can only filter the clothingItems
+in App.jsx if the request was successfull, right now its not returning a promise,
+i tried to comment out the .then() here then write it in App but its not working,
+will stop here for now */
 function deleteClothingItems(id) {
   fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
