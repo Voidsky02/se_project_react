@@ -12,7 +12,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
-import { getClothingItems } from "../../utils/api.js";
+import { getClothingItems, postClothingItems } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -52,7 +52,9 @@ function App() {
         console.error(`Error: ${err}`);
       });
 
-    getClothingItems().then((data) => setClothingItems(data));
+    getClothingItems()
+      .then((data) => setClothingItems(data))
+      .catch((err) => console.error(err));
   }, []);
 
   function openItemModal() {
@@ -106,7 +108,7 @@ function App() {
   };
 
   function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
-    // methods from api.js will go here later...
+    postClothingItems(itemName, imageUrl, weatherTemp);
 
     const item = {
       // _id: clothingItems[clothingItems.length - 1]._id + 1, (mabey they will tell me how to add unique id later)

@@ -2,21 +2,27 @@ const baseUrl = "http://localhost:3001";
 
 function getClothingItems() {
   return fetch(`${baseUrl}/items`, {})
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.status === 200 || 304) {
+        res.json();
+      } else {
+        Promise.reject(res.status);
+      }
+    })
     .then((data) => {
       return data;
-    });
+    })
+    .catch((err) => console.error(err));
 }
 
 // Ill be calling this when i submit a new item, i think it was AddItemModal
-function postClothingItem(itemName, imageLink, weatherTemp, itemId) {
+function postClothingItems(itemName, imageLink, weatherTemp) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      _id: itemId,
       name: itemName,
       weather: weatherTemp,
       imageUrl: imageLink,
@@ -26,4 +32,4 @@ function postClothingItem(itemName, imageLink, weatherTemp, itemId) {
 
 // STILL NEED TO CALL IT SOMEWHERE
 
-export { getClothingItems };
+export { getClothingItems, postClothingItems };
