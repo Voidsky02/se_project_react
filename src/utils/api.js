@@ -4,9 +4,9 @@ function getClothingItems() {
   return fetch(`${baseUrl}/items`, {})
     .then((res) => {
       if (res.status === 200 || 304) {
-        res.json();
+        return res.json();
       } else {
-        Promise.reject(res.status);
+        return Promise.reject(res.status);
       }
     })
     .then((data) => {
@@ -27,7 +27,7 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
       weather: weatherTemp,
       imageUrl: imageLink,
     }),
-  });
+  }).catch((err) => console.error(err));
 }
 
 // STILL NEED TO CALL IT SOMEWHERE

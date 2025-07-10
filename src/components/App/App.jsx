@@ -53,7 +53,9 @@ function App() {
       });
 
     getClothingItems()
-      .then((data) => setClothingItems(data))
+      .then((data) => {
+        setClothingItems(data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
