@@ -82,15 +82,6 @@ function App() {
   }
 
   function handleCardDelete() {
-    /* I believe the problem is i was trying to set up unique ID's myself,
-    but the server handles that, so in my "cardToBeDeleted" im probable not 
-    selecting the correct ID in the proper way...
-    */
-
-    /* Also, setClothingItems must be put in a .then() block after 
-    handleCardDelete, that way it only runs and removes the item from state if the 
-    DELETE request was successfull */
-
     deleteClothingItems(cardToBeDeleted)
       .then(() => {
         setClothingItems(
@@ -141,16 +132,6 @@ function App() {
         return;
       })
       .catch((err) => console.error(err));
-
-    // const item = {
-    //   // _id: clothingItems[clothingItems.length - 1]._id + 1, (mabey they will tell me how to add unique id later)
-    //   name: itemName,
-    //   weather: weatherTemp,
-    //   link: imageUrl,
-    // };
-
-    // setClothingItems([item, ...clothingItems]);
-    // closeModal();
   }
 
   return (

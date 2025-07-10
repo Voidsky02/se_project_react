@@ -49,17 +49,16 @@ in App.jsx if the request was successfull, right now its not returning a promise
 i tried to comment out the .then() here then write it in App but its not working,
 will stop here for now */
 function deleteClothingItems(id) {
-  fetch(`${baseUrl}/items/${id}`, {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   })
-    // .then((res) => {
-    //   if (res.status === 200 || 204) {
-    //     console.log("success");
-    //     return "Success";
-    //   } else {
-    //     Promise.reject(res.status);
-    //   }
-    // })
+    .then((res) => {
+      if (res.status === 200 || 204) {
+        return "Success";
+      } else {
+        Promise.reject(res.status);
+      }
+    })
     .catch((err) => console.error(`Failure to DELETE: ${err}`));
 }
 
