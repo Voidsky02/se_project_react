@@ -35,6 +35,7 @@
   font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .confirmation__cancel-btn {
@@ -43,4 +44,5 @@
   font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
 }

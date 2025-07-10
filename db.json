@@ -109,40 +109,40 @@
       "_id": 17
     },
     {
-      "name": "asdsadsadsads",
-      "weather": "cold",
-      "imageUrl": "dsadasdasdas",
-      "_id": 18
-    },
-    {
-      "name": "Test",
-      "weather": "cold",
-      "imageUrl": "sdfdsfdsfsdfdsfdsf",
-      "_id": 19
-    },
-    {
-      "name": "TEST TEST",
-      "weather": "cold",
-      "imageUrl": "asdfasdsadsa",
-      "_id": 20
-    },
-    {
-      "name": "asdsadsa",
-      "weather": "cold",
-      "imageUrl": "sadsadsadsa",
-      "_id": 21
-    },
-    {
       "name": "dsadsad",
       "weather": "",
       "imageUrl": "asdsdsd",
       "_id": 22
     },
     {
-      "name": "Final Test ",
+      "name": "sdsdsds",
+      "weather": "hot",
+      "imageUrl": "sdsdsdsd",
+      "_id": 24
+    },
+    {
+      "name": "Cold Front of list?",
       "weather": "cold",
-      "imageUrl": "TEST TEST",
-      "_id": 23
+      "imageUrl": "sdsdsd",
+      "_id": 26
+    },
+    {
+      "name": "Hot back of list? ",
+      "weather": "hot",
+      "imageUrl": "sdsdsdsds",
+      "_id": 27
+    },
+    {
+      "name": "Warm back of List?",
+      "weather": "warm",
+      "imageUrl": "sadasdsadsad",
+      "_id": 28
+    },
+    {
+      "name": "is clothing items updating? ",
+      "weather": "warm",
+      "imageUrl": "sadasd",
+      "_id": 29
     }
   ]
 }

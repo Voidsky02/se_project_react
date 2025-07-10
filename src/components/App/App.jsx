@@ -126,6 +126,7 @@ function App() {
         };
 
         setClothingItems([item, ...clothingItems]);
+        console.log(clothingItems);
 
         closeModal();
 
