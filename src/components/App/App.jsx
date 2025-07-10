@@ -12,7 +12,11 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
-import { getClothingItems, postClothingItems } from "../../utils/api.js";
+import {
+  getClothingItems,
+  postClothingItems,
+  deleteClothingItems,
+} from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -77,16 +81,27 @@ function App() {
     setCardToBeDeleted(null);
   }
 
-  function handleCardDelete(itemKey) {
-    // API call
+  function handleCardDelete() {
+    /* I believe the problem is i was trying to set up unique ID's myself,
+    but the server handles that, so in my "cardToBeDeleted" im probable not 
+    selecting the correct ID in the proper way...
+    */
 
-    setClothingItems(
-      clothingItems.filter((item) => item._id !== cardToBeDeleted)
-    );
+    /* Also, setClothingItems must be put in a .then() block after 
+    handleCardDelete, that way it only runs and removes the item from state if the 
+    DELETE request was successfull */
 
-    closeModal();
+    deleteClothingItems(cardToBeDeleted)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== cardToBeDeleted)
+        );
+        closeModal();
+      })
+      .catch((err) => console.error(err));
   }
 
+  // I feel i will have to update this to stop using client side data...
   function handleCardClick(data) {
     setItemModalData({
       title: `${data.title}`,
@@ -110,17 +125,32 @@ function App() {
   };
 
   function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
-    postClothingItems(itemName, imageUrl, weatherTemp);
+    postClothingItems(itemName, imageUrl, weatherTemp)
+      .then((data) => {
+        const item = {
+          _id: data._id,
+          name: data.name,
+          weather: data.weather,
+          imageUrl: data.imageUrl,
+        };
 
-    const item = {
-      // _id: clothingItems[clothingItems.length - 1]._id + 1, (mabey they will tell me how to add unique id later)
-      name: itemName,
-      weather: weatherTemp,
-      link: imageUrl,
-    };
+        setClothingItems([item, ...clothingItems]);
 
-    setClothingItems([item, ...clothingItems]);
-    closeModal();
+        closeModal();
+
+        return;
+      })
+      .catch((err) => console.error(err));
+
+    // const item = {
+    //   // _id: clothingItems[clothingItems.length - 1]._id + 1, (mabey they will tell me how to add unique id later)
+    //   name: itemName,
+    //   weather: weatherTemp,
+    //   link: imageUrl,
+    // };
+
+    // setClothingItems([item, ...clothingItems]);
+    // closeModal();
   }
 
   return (

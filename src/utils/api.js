@@ -12,10 +12,12 @@ function getClothingItems() {
     .then((data) => {
       return data;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(`Failure to GET: ${err}`));
 }
 
-// Ill be calling this when i submit a new item, i think it was AddItemModal
+// I need this to return its item info, so i can use the unique ID generated
+// by the server to be able to use in other things, such as a DELETE request,
+// or filtering out the item client side after deletion
 function postClothingItems(itemName, imageLink, weatherTemp) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -27,9 +29,34 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
       weather: weatherTemp,
       imageUrl: imageLink,
     }),
-  }).catch((err) => console.error(err));
+  })
+    .then((res) => {
+      if (res.status === 201) {
+        return res.json();
+      } else {
+        return Promise.reject(res.status);
+      }
+    })
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((err) => console.error(`Failure to POST; ${err}`));
 }
 
-// STILL NEED TO CALL IT SOMEWHERE
+function deleteClothingItems(id) {
+  fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+  })
+    // .then((res) => {
+    //   if (res.status === 200 || 204) {
+    //     console.log("success");
+    //     return "Success";
+    //   } else {
+    //     Promise.reject(res.status);
+    //   }
+    // })
+    .catch((err) => console.error(`Failure to DELETE: ${err}`));
+}
 
-export { getClothingItems, postClothingItems };
+export { getClothingItems, postClothingItems, deleteClothingItems };
