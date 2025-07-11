@@ -15,9 +15,6 @@ function getClothingItems() {
     .catch((err) => console.error(`Failure to GET: ${err}`));
 }
 
-// I need this to return its item info, so i can use the unique ID generated
-// by the server to be able to use in other things, such as a DELETE request,
-// or filtering out the item client side after deletion
 function postClothingItems(itemName, imageLink, weatherTemp) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -44,10 +41,6 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
     .catch((err) => console.error(`Failure to POST; ${err}`));
 }
 
-/* I must make it return a promise, so i can only filter the clothingItems
-in App.jsx if the request was successfull, right now its not returning a promise,
-i tried to comment out the .then() here then write it in App but its not working,
-will stop here for now */
 function deleteClothingItems(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",

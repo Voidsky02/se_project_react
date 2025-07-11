@@ -9,7 +9,6 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import {
@@ -92,7 +91,6 @@ function App() {
       .catch((err) => console.error(err));
   }
 
-  // I feel i will have to update this to stop using client side data...
   function handleCardClick(data) {
     setItemModalData({
       title: `${data.title}`,
@@ -126,7 +124,6 @@ function App() {
         };
 
         setClothingItems([item, ...clothingItems]);
-        console.log(clothingItems);
 
         closeModal();
 

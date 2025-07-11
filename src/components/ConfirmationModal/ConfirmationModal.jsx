@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./ConfirmationModal.css";
 
 function ConfirmationModal({
@@ -10,7 +10,6 @@ function ConfirmationModal({
 }) {
   useEffect(() => {
     document.addEventListener("keydown", handleEscapeClose);
-    // console.log(handleOffModalClick)
 
     return () => {
       document.removeEventListener("keydown", handleEscapeClose);
