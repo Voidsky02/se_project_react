@@ -171,7 +171,13 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  clothingItems && <Profile clothingItems={clothingItems} />
+                  clothingItems && (
+                    <Profile
+                      clothingItems={clothingItems}
+                      openClothesModal={openClothesModal}
+                      handleCardClick={handleCardClick}
+                    />
+                  )
                 }
               />
             </Routes>

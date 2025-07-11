@@ -101,42 +101,6 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
-      "name": "Test POST",
-      "weather": "warm",
-      "imageUrl": "sddsadasdasdsadsdsad",
-      "_id": 17
-    },
-    {
-      "name": "dsadsad",
-      "weather": "",
-      "imageUrl": "asdsdsd",
-      "_id": 22
-    },
-    {
-      "name": "sdsdsds",
-      "weather": "hot",
-      "imageUrl": "sdsdsdsd",
-      "_id": 24
-    },
-    {
-      "name": "Hot back of list? ",
-      "weather": "hot",
-      "imageUrl": "sdsdsdsds",
-      "_id": 27
-    },
-    {
-      "name": "Warm back of List?",
-      "weather": "warm",
-      "imageUrl": "sadasdsadsad",
-      "_id": 28
-    },
-    {
-      "name": "is clothing items updating? ",
-      "weather": "warm",
-      "imageUrl": "sadasd",
-      "_id": 29
     }
   ]
 }
