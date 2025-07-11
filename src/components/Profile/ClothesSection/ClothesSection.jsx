@@ -1,7 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
 
-function ClothesSection(clothingItems) {
+function ClothesSection({ clothingItems }) {
   return (
     <>
       <div className="cards__container">

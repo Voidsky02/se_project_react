@@ -170,7 +170,9 @@ function App() {
 
               <Route
                 path="/profile"
-                element={<Profile clothingItems={clothingItems} />}
+                element={
+                  clothingItems && <Profile clothingItems={clothingItems} />
+                }
               />
             </Routes>
 

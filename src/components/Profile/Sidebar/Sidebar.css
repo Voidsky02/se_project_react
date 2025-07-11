@@ -1,0 +1,11 @@
+.user {
+  display: flex;
+  gap: 12px;
+}
+
+.user__name {
+  text-align: center;
+  text-wrap: nowrap;
+  font-size: 20px;
+  line-height: 24px;
+}
