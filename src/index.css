@@ -1,4 +1,4 @@
-@import url("./vendor/fonts/style.css");
+@import url("./vendor/fonts/fonts.css");
 /* wanted to create a general modal style sheet then override as neccessary */
 @import url("./styles/modal.css");
 @import url("./components/App/App.css");
