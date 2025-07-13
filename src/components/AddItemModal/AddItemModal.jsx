@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -19,13 +19,10 @@ function AddItemModal({
     setWeather("");
   };
 
-  useEffect(() => {
-    isOpen ? resetInputs() : "";
-  }, [isOpen]);
-
   function handleSubmit(evt) {
     evt.preventDefault();
     onAddItem(name, imageUrl, weather);
+    resetInputs();
   }
 
   return (
