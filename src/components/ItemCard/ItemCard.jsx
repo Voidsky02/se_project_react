@@ -1,3 +1,5 @@
+import "./ItemCard.css";
+
 function ItemCard({ handleCardClick, item }) {
   return (
     <>

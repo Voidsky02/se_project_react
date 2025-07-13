@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({

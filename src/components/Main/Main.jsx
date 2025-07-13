@@ -1,4 +1,5 @@
 import React from "react";
+import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { temperatureCheck } from "../../utils/weatherApi";
