@@ -7,7 +7,7 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
   const [currentBanner, setCurrentBanner] = useState("");
 
   // pass it weather.icon[2] & weather.id
-  function setWeatherBanner(currentTime, currentWeather) {
+  function updateWeatherBanner(currentTime, currentWeather) {
     let locationTime = "";
     if (currentTime === "d") {
       locationTime = true;
@@ -37,9 +37,9 @@ function WeatherCard({ temperature, weather, weatherOptions }) {
     setCurrentBanner(selectedBanner.url);
   }
 
-  // setWeatherBanner is the function, setCurrentBanner is the setState
+  // updateWeatherBanner is the function, setCurrentBanner is the setState
   useEffect(() => {
-    setWeatherBanner(weather.icon[2], weather.id);
+    updateWeatherBanner(weather.icon[2], weather.id);
   }, []);
 
   return (

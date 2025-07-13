@@ -1,13 +1,13 @@
 const baseUrl = "http://localhost:3001";
 
+const checkResponse = (res) => {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+};
+
 function getClothingItems() {
   return fetch(`${baseUrl}/items`, {})
     .then((res) => {
-      if (res.status === 200 || 304) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
+      return checkResponse(res);
     })
     .then((data) => {
       return data;
@@ -28,11 +28,7 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
     }),
   })
     .then((res) => {
-      if (res.status === 201) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
+      return checkResponse(res);
     })
     .then((data) => {
       console.log(data);
@@ -46,11 +42,7 @@ function deleteClothingItems(id) {
     method: "DELETE",
   })
     .then((res) => {
-      if (res.status === 200 || 204) {
-        return "Success";
-      } else {
-        Promise.reject(res.status);
-      }
+      return checkResponse(res);
     })
     .catch((err) => console.error(`Failure to DELETE: ${err}`));
 }
