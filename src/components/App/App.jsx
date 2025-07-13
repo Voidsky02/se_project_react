@@ -18,8 +18,21 @@ import {
 } from "../../utils/api.js";
 
 function App() {
-  const [weatherData, setWeatherData] = useState(null);
-  const [clothingItems, setClothingItems] = useState(null);
+  const [weatherData, setWeatherData] = useState({
+    countryName: "",
+    cityName: "",
+    temperature: {
+      F: "",
+      C: "",
+    },
+    weather: {
+      id: 0,
+      main: "",
+      description: "",
+      icon: "",
+    },
+  });
+  const [clothingItems, setClothingItems] = useState([]);
   const [itemModalData, setItemModalData] = useState({
     title: "",
     image: "",
