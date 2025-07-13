@@ -11,15 +11,6 @@ function ModalWithForm({
   isOpen,
   handleSubmit,
 }) {
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeClose);
-    //
-    // how to pass current state of this modal to the closeModal() func
-    return () => {
-      document.removeEventListener("keydown", handleEscapeClose);
-    };
-  }, []);
-
   return (
     <div
       className={`modal ${isOpen && "modal_opened"} modal_type_${name}`}
@@ -34,14 +25,14 @@ function ModalWithForm({
         <h3 className="form-modal__title">{title}</h3>
         <form className="form-modal__form" name={name}>
           {children}
+          <button
+            className="form-modal__submit-btn"
+            type="submit"
+            onSubmit={handleSubmit}
+          >
+            {buttonText}
+          </button>
         </form>
-        <button
-          className="form-modal__submit-btn"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          {buttonText}
-        </button>
       </div>
     </div>
   );

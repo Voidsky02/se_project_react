@@ -26,6 +26,7 @@
 
 .add-clothes__input {
   display: block;
+  accent-color: black;
 }
 
 .add-clothes__input_type_text {
@@ -58,5 +59,6 @@ input[type="radio"]:checked + label {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
   border-radius: 4px;
+  border: none;
   cursor: pointer;
 }
