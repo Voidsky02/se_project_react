@@ -1,5 +1,8 @@
 .main__title {
   margin: 0 0 34px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
 }
 
 .cards__container {

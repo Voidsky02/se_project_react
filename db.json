@@ -103,16 +103,10 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "dsfsdfsdf",
-      "weather": "hot",
-      "imageUrl": "sdfsdfdsf",
+      "name": "sadsadsad",
+      "weather": "warm",
+      "imageUrl": "asdsadadsad",
       "_id": 17
-    },
-    {
-      "name": "sadsad",
-      "weather": "hot",
-      "imageUrl": "asdsad",
-      "_id": 19
     }
   ]
 }

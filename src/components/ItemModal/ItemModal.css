@@ -42,5 +42,6 @@
   bottom: 68px;
   color: #ff4d00;
   background-color: transparent;
+  border: none;
   cursor: pointer;
 }
