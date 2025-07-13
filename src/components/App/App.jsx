@@ -66,13 +66,17 @@ function App() {
       })
       .catch((err) => {
         console.error(`Error: ${err}`);
+        alert("Error: Could not retrieve weather data");
       });
 
     getClothingItems()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        alert("Error: Could not retrieve clothing data");
+      });
   }, []);
 
   function openItemModal() {
@@ -101,7 +105,10 @@ function App() {
         );
         closeModal();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        alert("Error: Could not delete clothing item");
+      });
   }
 
   function handleCardClick(data) {
@@ -142,7 +149,10 @@ function App() {
 
         return;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        alert("Error: Could not submit clothing item");
+      });
   }
 
   return (
