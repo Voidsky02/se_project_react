@@ -20,6 +20,7 @@
 }
 
 .confirmation-modal__title {
+  max-width: 380px;
   text-align: center;
   margin: 0;
   margin-bottom: 40px;

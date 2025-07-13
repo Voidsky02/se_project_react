@@ -79,6 +79,17 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (openModal) {
+      // only add the event listener if a modal is open
+      document.addEventListener("keydown", handleEscapeClose);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  }, [openModal]);
+
   function openItemModal() {
     setOpenModal("item");
   }

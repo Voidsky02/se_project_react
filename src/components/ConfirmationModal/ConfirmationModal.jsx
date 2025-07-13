@@ -1,21 +1,11 @@
-import { useEffect } from "react";
 import "./ConfirmationModal.css";
 
 function ConfirmationModal({
   closeModal,
   handleOffModalClick,
-  handleEscapeClose,
   isOpen,
   handleCardDelete,
 }) {
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeClose);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscapeClose);
-    };
-  }, []);
-
   return (
     <div
       className={`modal ${isOpen && "modal_opened"}`}
@@ -28,7 +18,7 @@ function ConfirmationModal({
           onClick={closeModal}
         ></button>
         <h2 className="confirmation-modal__title">
-          Are you sure you want to delete this item?<br></br> This action is
+          Are you sure you want to delete this item? This action is
           irreversible.
         </h2>
         <button className="confirmation__delete-btn" onClick={handleCardDelete}>
