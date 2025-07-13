@@ -112,12 +112,7 @@ function App() {
   }
 
   function handleCardClick(data) {
-    setItemModalData({
-      title: `${data.title}`,
-      image: `${data.image}`,
-      weather: `${data.weather}`,
-      id: data.id,
-    });
+    setItemModalData(data);
     openItemModal();
   }
 
