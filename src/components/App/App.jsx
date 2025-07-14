@@ -175,7 +175,6 @@ function App() {
                 openClothesModal={openClothesModal}
                 checked={checked}
                 onChange={handleChange}
-                onColor="#06D6A0"
               />
             )}
             <Routes>

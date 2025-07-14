@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import "./ToggleSwitch.css";
 
-function ToggleSwitch({ label, value, onChange, onColor }) {
-  // this is work in progress v ***STEP 5***
+function ToggleSwitch({ value, onChange }) {
   const tempUnitContext = React.useContext(TemperatureUnitContext);
 
   return (
@@ -18,12 +17,9 @@ function ToggleSwitch({ label, value, onChange, onColor }) {
           tempUnitContext.handleToggleSwitchChange();
         }}
       />
-      <label
-        style={{ background: value && onColor }}
-        className="react-switch-label"
-        htmlFor={`react-switch-new`}
-      >
-        {/* {label} */}
+      <label className="react-switch-label" htmlFor={`react-switch-new`}>
+        <span className="switch-letter-f">F</span>
+        <span className="switch-letter-c">C</span>
         <span className={`react-switch-button`} />
       </label>
     </>

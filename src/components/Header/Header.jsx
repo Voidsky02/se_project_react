@@ -8,7 +8,6 @@ function Header({
   openClothesModal,
   checked,
   onChange,
-  onColor,
 }) {
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
@@ -28,12 +27,7 @@ function Header({
           <p className="header__date-location">{`${currentDate}, ${location}`}</p>
         </div>
         <div className="header__right-side">
-          <ToggleSwitch
-            label="F"
-            value={checked}
-            onChange={onChange}
-            onColor={onColor}
-          />
+          <ToggleSwitch value={checked} onChange={onChange} />
           <p
             className="header__button"
             type="button"
