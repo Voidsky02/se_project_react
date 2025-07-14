@@ -15,6 +15,6 @@
 
 ![screenshot of main section] (src/images/main-section-demo-pic.png)
 
-![screenshot of profile section] (src/images/main-section-demo-pic.png)
+![screenshot of profile section] (src/images/profile-section-demo-pic.png)
 
-![screenshot of item viewing section] (src/images/main-section-demo-pic.png)
+![screenshot of item viewing section] (src/images/item-modal-demo-pic.png)
