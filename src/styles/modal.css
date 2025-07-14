@@ -9,11 +9,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* I should be able to delete this later, as it should be handled in react */
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   padding: 0 20px;
+  z-index: 2;
 }
 
 .modal_opened {

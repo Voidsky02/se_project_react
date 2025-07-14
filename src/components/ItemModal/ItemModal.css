@@ -13,7 +13,7 @@
   margin-bottom: 20px;
 }
 
-.item-modal__close-btn {
+.modal__close-btn.item-modal__close-btn {
   width: 20px;
   height: 20px;
   top: 24px;
