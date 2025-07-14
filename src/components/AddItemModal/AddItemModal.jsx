@@ -40,8 +40,6 @@ function AddItemModal({
         <label className="add-clothes__label" htmlFor="add-clothes__name">
           Name
         </label>
-        {/* create a function to provide error messages then.... */}
-        {/* use the function on the input's onChange prop */}
         <input
           className="add-clothes__input add-clothes__input_type_text"
           id="add-clothes__name"
