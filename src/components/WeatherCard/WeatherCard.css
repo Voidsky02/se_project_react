@@ -1,7 +1,5 @@
 .weatherCard {
-  /* background-image: url("src/images/day-cloudy.svg"); */
   background-repeat: no-repeat;
-  /* contain keeps sun in view but temp gets distorted, cover is the opposite */
   background-size: cover;
   background-position: right;
   border-radius: 12px;

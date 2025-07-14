@@ -1,53 +1,111 @@
 .header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 28px;
+  /* max-width: 100%;
+  /* display: flex; */
+  /* flex-wrap: nowrap;
+  justify-content: space-between;  */
+  /* align-items: center; */
+  /* font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 28px; */
+}
+
+/* Left Section of styles */
+.header__left-side {
+  display: flex;
+  align-items: center;
+  /* font-family: Cabinet Grotesk; */
+  font-weight: 700;
+  font-style: Bold;
   font-size: 20px;
   line-height: 24px;
-  margin-bottom: 28px;
+  letter-spacing: 0%;
+
+  /* display: flex;
+  gap: 24px; */
+  /* align-items: flex-end; */
 }
 
 .header a {
   text-decoration: none;
   color: black;
-}
-
-.header__left-side {
-  display: flex;
-  gap: 24px;
-}
-
-.header__right-side {
-  display: flex;
-  gap: 20px;
+  /* display: inline-block; */
+  /* text-decoration: none;
+  color: black;
+  width: 89px;
+  height: 40px; */
+  /* align-self: center; */
 }
 
 .header__image {
-  align-self: center;
+  margin-right: 24px;
   width: 89px;
   height: 40px;
+  /* align-self: center;
+  width: 89px;
+  height: 40px; */
 }
 
 .header__date-location {
+  margin: 0;
+  /* margin: 0;
   text-wrap: nowrap;
   font-size: 20px;
+  line-height: 24px; */
+}
+
+/* Right Section of styles */
+.header__right-side {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
   line-height: 24px;
+  letter-spacing: 0%;
+  /* display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden; */
+  /* align-items: flex-end; */
+  /* gap: 20px; */
 }
 
 .header__button {
+  margin: 0;
+  margin-left: 20px;
+  /* margin: 0;
   cursor: pointer;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 24px; */
 }
 
 /* Transport the below styles to its own user.css stylesheet in future */
 .user {
   display: flex;
+  align-items: center;
+  /* align-items: flex-end; */
   gap: 12px;
+  margin-left: 20px;
+  /* font-family: Cabinet Grotesk; */
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0%;
 }
 
 .user__name {
+  margin: 0;
+  /* margin: 0;
   text-align: center;
   text-wrap: nowrap;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 24px; */
+}
+
+.user__image {
+  width: 40px;
+  height: 40px;
 }

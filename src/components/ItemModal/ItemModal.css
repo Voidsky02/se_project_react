@@ -1,4 +1,4 @@
-.modal__container_type_item-modal {
+.modal__container.modal__container_type_item-modal {
   padding: 0;
   width: fit-content;
   overflow: hidden;
@@ -35,13 +35,13 @@
 }
 
 .item-modal__delete-btn {
-  width: 101px;
-  height: 24px;
+  width: fit-content;
   position: absolute;
   right: 32px;
   bottom: 68px;
   color: #ff4d00;
   background-color: transparent;
   border: none;
+  font-weight: 700;
   cursor: pointer;
 }

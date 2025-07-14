@@ -30,8 +30,6 @@ function ItemModal({
           className="item-modal__delete-btn"
           onClick={openConfirmationModal}
         >
-          {/* was told "Item" word wraps onto new line, but cannot see it from my browser,
-          can reviewer please tell me how to see it so i can correct the mistake, Thank you */}
           Delete Item
         </button>
         <p className="item-modal__description">{`Weather: ${weather}`}</p>
