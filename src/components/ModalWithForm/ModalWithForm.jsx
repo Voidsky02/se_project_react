@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -8,7 +7,6 @@ function ModalWithForm({
   buttonText,
   closeModal,
   handleOffModalClick,
-  handleEscapeClose,
   isOpen,
   handleSubmit,
 }) {
