@@ -1,13 +1,10 @@
-import React from "react";
 import { weatherApiKey } from "./constants.js";
 import { checkResponse } from "./api.js";
-// import TemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
 function getWeatherData(locationlatitude, locationlongitude) {
   const latitude = locationlatitude;
   const longitude = locationlongitude;
   const weatherApiRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey}`;
-  // const tempUnitContext = React.useContext(TemperatureUnitContext);
 
   return fetch(`${weatherApiRequest}`, {})
     .then((res) => {
@@ -65,15 +62,5 @@ function temperatureCheck(temperature, tempUnit) {
     return celsiusTemperatureCheck(temperature);
   }
 }
-
-// function temperatureCheck(temperature) {
-//   if (temperature >= 86) {
-//     return "hot";
-//   } else if (temperature >= 66) {
-//     return "warm";
-//   } else {
-//     return "cold";
-//   }
-// }
 
 export { getWeatherData, filterWeatherData, temperatureCheck };
