@@ -19,16 +19,18 @@
   background-image: url("src/images/close-btn-grey.svg");
 }
 
-.confirmation-modal__title {
+.modal__title.modal__title_type_confirmation {
   max-width: 380px;
   text-align: center;
   margin: 0;
   margin-bottom: 40px;
+  font-family: "Cabinet Grotesk Regular", Arial, Helvetica, sans-serif;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
 }
 
-.confirmation__delete-btn {
+.modal__delete-btn.modal__delete-btn_type_confirmation {
   margin-bottom: 24px;
   width: fit-content;
   color: red;
@@ -40,7 +42,7 @@
   cursor: pointer;
 }
 
-.confirmation__cancel-btn {
+.modal__cancel-btn.modal__cancel-btn_type_confirmation {
   width: fit-content;
   background-color: transparent;
   font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;

@@ -17,14 +17,20 @@ function ConfirmationModal({
           type="button"
           onClick={closeModal}
         ></button>
-        <h2 className="confirmation-modal__title">
+        <h2 className="modal__title modal__title_type_confirmation">
           Are you sure you want to delete this item? This action is
           irreversible.
         </h2>
-        <button className="confirmation__delete-btn" onClick={handleCardDelete}>
+        <button
+          className="modal__delete-btn modal__delete-btn_type_confirmation"
+          onClick={handleCardDelete}
+        >
           Yes, delete item
         </button>
-        <button className="confirmation__cancel-btn" onClick={closeModal}>
+        <button
+          className="modal__cancel-btn_type_confirmation"
+          onClick={closeModal}
+        >
           Cancel
         </button>
       </div>
