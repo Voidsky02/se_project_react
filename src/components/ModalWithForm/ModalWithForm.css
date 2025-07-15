@@ -1,8 +1,9 @@
-.modal__container_type_add-clothes {
+.modal__container.modal__container_type_add-clothes {
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
   max-width: 496px;
+  padding: 16px 8px;
 }
 
 .modal__close-btn.form-modal__close-btn {
@@ -13,6 +14,7 @@
 
 .form-modal__title {
   margin: 0 0 24px 0;
+  font-size: 16px;
 }
 
 .add-clothes__form_element {
