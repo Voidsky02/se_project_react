@@ -140,25 +140,20 @@ function App() {
   };
 
   function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
-    postClothingItems(itemName, imageUrl, weatherTemp)
-      .then((data) => {
-        const item = {
-          _id: data._id,
-          name: data.name,
-          weather: data.weather,
-          imageUrl: data.imageUrl,
-        };
+    postClothingItems(itemName, imageUrl, weatherTemp).then((data) => {
+      const item = {
+        _id: data._id,
+        name: data.name,
+        weather: data.weather,
+        imageUrl: data.imageUrl,
+      };
 
-        setClothingItems([item, ...clothingItems]);
+      setClothingItems([item, ...clothingItems]);
 
-        closeModal();
+      closeModal();
 
-        return;
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Error: Could not submit clothing item");
-      });
+      return;
+    });
   }
 
   return (

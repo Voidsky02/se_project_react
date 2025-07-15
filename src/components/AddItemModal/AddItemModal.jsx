@@ -21,8 +21,13 @@ function AddItemModal({
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(name, imageUrl, weather);
-    resetInputs();
+    onAddItem(name, imageUrl, weather)
+      .then((data) => {
+        return resetInputs();
+      })
+      .catch((err) => {
+        return alert(`Error ${err}: Could not submit clothing item`);
+      });
   }
 
   return (
