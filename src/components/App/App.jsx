@@ -140,7 +140,7 @@ function App() {
   };
 
   function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
-    postClothingItems(itemName, imageUrl, weatherTemp).then((data) => {
+    return postClothingItems(itemName, imageUrl, weatherTemp).then((data) => {
       const item = {
         _id: data._id,
         name: data.name,

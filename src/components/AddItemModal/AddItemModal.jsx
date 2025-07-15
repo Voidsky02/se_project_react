@@ -22,7 +22,7 @@ function AddItemModal({
   function handleSubmit(evt) {
     evt.preventDefault();
     onAddItem(name, imageUrl, weather)
-      .then((data) => {
+      .then(() => {
         return resetInputs();
       })
       .catch((err) => {
