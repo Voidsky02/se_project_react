@@ -47,4 +47,9 @@ function deleteClothingItems(id) {
     .catch((err) => console.error(`Failure to DELETE: ${err}`));
 }
 
-export { getClothingItems, postClothingItems, deleteClothingItems };
+export {
+  getClothingItems,
+  postClothingItems,
+  deleteClothingItems,
+  checkResponse,
+};

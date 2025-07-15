@@ -1,4 +1,5 @@
 import { weatherApiKey } from "./constants.js";
+import { checkResponse } from "./api.js";
 
 function getWeatherData(locationlatitude, locationlongitude) {
   const latitude = locationlatitude;
@@ -7,11 +8,7 @@ function getWeatherData(locationlatitude, locationlongitude) {
 
   return fetch(`${weatherApiRequest}`, {})
     .then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
+      return checkResponse(res);
     })
     .then((data) => {
       let filteredData = filterWeatherData(data);
