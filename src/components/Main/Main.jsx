@@ -10,7 +10,8 @@ function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
   const tempUnitContext = React.useContext(TemperatureUnitContext);
 
   const currentWeatherType = temperatureCheck(
-    Number(weatherData.temperature[tempUnitContext.currentTemperatureUnit])
+    Number(weatherData.temperature[tempUnitContext.currentTemperatureUnit]),
+    tempUnitContext.currentTemperatureUnit
   );
   const filteredClothingItems = clothingItems.filter((item) => {
     return item.weather === currentWeatherType;
