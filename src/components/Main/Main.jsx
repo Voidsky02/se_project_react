@@ -7,12 +7,14 @@ import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext
 
 function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
   // pass handleCardClick() to onChange property of ItemCard element / will be recieved from App
-  const currentWeatherType = temperatureCheck(weatherData.temperature);
+  const tempUnitContext = React.useContext(TemperatureUnitContext);
+
+  const currentWeatherType = temperatureCheck(
+    Number(weatherData.temperature[tempUnitContext.currentTemperatureUnit])
+  );
   const filteredClothingItems = clothingItems.filter((item) => {
     return item.weather === currentWeatherType;
   });
-
-  const tempUnitContext = React.useContext(TemperatureUnitContext);
 
   return (
     <main className="main">
