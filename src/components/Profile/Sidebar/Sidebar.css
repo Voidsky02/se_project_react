@@ -1,14 +1,14 @@
-.user {
+.sidebar__user {
   display: flex;
   gap: 12px;
 }
 
-.user__image {
+.sidebar__user-image {
   width: 56px;
   height: 56px;
 }
 
-.user__name {
+.sidebar__user-name {
   text-align: center;
   text-wrap: nowrap;
   font-weight: bold;

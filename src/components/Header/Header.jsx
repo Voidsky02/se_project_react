@@ -38,10 +38,10 @@ function Header({
           {/* Was told I may be right in making User a component, */}
           {/* but for now, it is not required */}
           <Link to="/profile">
-            <div className="user">
-              <p className="user__name">Terrence Tegegne</p>
+            <div className="header__user">
+              <p className="header__user-name">Terrence Tegegne</p>
               <img
-                className="user__image"
+                className="header__user-image"
                 src={userPicture}
                 alt="temporary user picture"
               />

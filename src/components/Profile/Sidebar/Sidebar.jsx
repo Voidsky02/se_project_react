@@ -5,13 +5,13 @@ function Sidebar() {
 
   return (
     <>
-      <div className="user">
+      <div className="sidebar__user">
         <img
-          className="user__image"
+          className="sidebar__user-image"
           src={userPicture}
           alt="temporary user picture"
         />
-        <p className="user__name">Terrence Tegegne</p>
+        <p className="sidebar__user-name">Terrence Tegegne</p>
       </div>
     </>
   );
