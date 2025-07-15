@@ -32,9 +32,9 @@ function AddItemModal({
 
   return (
     <ModalWithForm
-      title={"New garmet"}
+      title={"New garment"}
       name={"add-clothes"}
-      buttonText={"Add garmet"}
+      buttonText={"Add garment"}
       closeModal={closeModal}
       handleOffModalClick={handleOffModalClick}
       handleEscapeClose={handleEscapeClose}
