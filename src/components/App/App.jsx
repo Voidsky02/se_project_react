@@ -71,7 +71,7 @@ function App() {
 
     getClothingItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems(data.reverse());
       })
       .catch((err) => {
         console.error(err);
