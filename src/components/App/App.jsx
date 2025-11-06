@@ -6,6 +6,8 @@ import { location, weatherOptions } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -227,6 +229,22 @@ function App() {
               handleEscapeClose={handleEscapeClose}
               isOpen={openModal === "add-clothes"}
               onAddItem={handleAdditemSubmit}
+            />
+
+            {/* Add LogIn Modal here */}
+            <LoginModal
+              closeModal={closeModal}
+              handleOffModalClick={handleOffModalClick}
+              handleEscapeClose={handleEscapeClose}
+              // Temp so i can see whats happenning
+              isOpen={true === false}
+            />
+            <RegisterModal
+              closeModal={closeModal}
+              handleOffModalClick={handleOffModalClick}
+              handleEscapeClose={handleEscapeClose}
+              // Temp so i can see whats happenning
+              isOpen={true === true}
             />
 
             <Footer />

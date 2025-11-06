@@ -1,0 +1,19 @@
+.log-in__form_element {
+  margin: 0 0 24px 0;
+}
+
+.log-in__label {
+  display: block;
+  margin: 0 0 8px 0;
+}
+
+.log-in__input {
+  display: block;
+  accent-color: black;
+}
+
+.log-in__input_type_text {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
