@@ -52,4 +52,5 @@ export {
   postClothingItems,
   deleteClothingItems,
   checkResponse,
+  baseUrl,
 };

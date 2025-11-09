@@ -13,6 +13,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import {
   getClothingItems,
   postClothingItems,
@@ -46,6 +47,8 @@ function App() {
   const [cardToBeDeleted, setCardToBeDeleted] = useState(null);
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentUser, setCurrentUser] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -161,95 +164,97 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <TemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-        >
-          <div className="page">
-            {weatherData && (
-              <Header
-                countryName={weatherData.countryName}
-                cityName={weatherData.cityName}
-                openClothesModal={openClothesModal}
-                checked={checked}
-                onChange={handleChange}
+        <CurrentUserContext.Provider value={currentUser}>
+          <TemperatureUnitContext.Provider
+            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+          >
+            <div className="page">
+              {weatherData && (
+                <Header
+                  countryName={weatherData.countryName}
+                  cityName={weatherData.cityName}
+                  openClothesModal={openClothesModal}
+                  checked={checked}
+                  onChange={handleChange}
+                />
+              )}
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    weatherData &&
+                    clothingItems && (
+                      <Main
+                        weatherData={weatherData}
+                        weatherOptions={weatherOptions}
+                        clothingItems={clothingItems}
+                        handleCardClick={handleCardClick}
+                      />
+                    )
+                  }
+                />
+
+                <Route
+                  path="/profile"
+                  element={
+                    clothingItems && (
+                      <Profile
+                        clothingItems={clothingItems}
+                        openClothesModal={openClothesModal}
+                        handleCardClick={handleCardClick}
+                      />
+                    )
+                  }
+                />
+              </Routes>
+
+              <ItemModal
+                title={itemModalData.title}
+                image={itemModalData.image}
+                weather={itemModalData.weather}
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                isOpen={openModal === "item"}
+                openConfirmationModal={openConfirmationModal}
               />
-            )}
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  weatherData &&
-                  clothingItems && (
-                    <Main
-                      weatherData={weatherData}
-                      weatherOptions={weatherOptions}
-                      clothingItems={clothingItems}
-                      handleCardClick={handleCardClick}
-                    />
-                  )
-                }
+
+              <ConfirmationModal
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                isOpen={openModal === "confirmation"}
+                handleCardDelete={handleCardDelete}
               />
 
-              <Route
-                path="/profile"
-                element={
-                  clothingItems && (
-                    <Profile
-                      clothingItems={clothingItems}
-                      openClothesModal={openClothesModal}
-                      handleCardClick={handleCardClick}
-                    />
-                  )
-                }
+              <AddItemModal
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                isOpen={openModal === "add-clothes"}
+                onAddItem={handleAdditemSubmit}
               />
-            </Routes>
 
-            <ItemModal
-              title={itemModalData.title}
-              image={itemModalData.image}
-              weather={itemModalData.weather}
-              closeModal={closeModal}
-              handleOffModalClick={handleOffModalClick}
-              handleEscapeClose={handleEscapeClose}
-              isOpen={openModal === "item"}
-              openConfirmationModal={openConfirmationModal}
-            />
+              {/* Add LogIn Modal here */}
+              <LoginModal
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                // Temp so i can see whats happenning
+                isOpen={true === false}
+              />
+              <RegisterModal
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                // Temp so i can see whats happenning
+                isOpen={true === true}
+              />
 
-            <ConfirmationModal
-              closeModal={closeModal}
-              handleOffModalClick={handleOffModalClick}
-              handleEscapeClose={handleEscapeClose}
-              isOpen={openModal === "confirmation"}
-              handleCardDelete={handleCardDelete}
-            />
-
-            <AddItemModal
-              closeModal={closeModal}
-              handleOffModalClick={handleOffModalClick}
-              handleEscapeClose={handleEscapeClose}
-              isOpen={openModal === "add-clothes"}
-              onAddItem={handleAdditemSubmit}
-            />
-
-            {/* Add LogIn Modal here */}
-            <LoginModal
-              closeModal={closeModal}
-              handleOffModalClick={handleOffModalClick}
-              handleEscapeClose={handleEscapeClose}
-              // Temp so i can see whats happenning
-              isOpen={true === false}
-            />
-            <RegisterModal
-              closeModal={closeModal}
-              handleOffModalClick={handleOffModalClick}
-              handleEscapeClose={handleEscapeClose}
-              // Temp so i can see whats happenning
-              isOpen={true === true}
-            />
-
-            <Footer />
-          </div>
-        </TemperatureUnitContext.Provider>
+              <Footer />
+            </div>
+          </TemperatureUnitContext.Provider>
+        </CurrentUserContext.Provider>
       </BrowserRouter>
     </>
   );
