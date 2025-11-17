@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   countryName,
@@ -16,6 +18,9 @@ function Header({
   });
   const location = `${cityName} (${countryName})`;
   const userPicture = "src/images/temp-profile-pic.svg";
+
+  // change styles depending on wether user is authorized or not
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <>
@@ -40,9 +45,11 @@ function Header({
           <Link to="/profile">
             <div className="header__user">
               <p className="header__user-name">Terrence Tegegne</p>
+              {/* // if there is no image provided, set placeholder w/ the users  */}
+              {/* first letter of name */}
               <img
                 className="header__user-image"
-                src={userPicture}
+                src={userPicture /*? userPicture : placeholder */}
                 alt="temporary user picture"
               />
             </div>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi.js";
 import { location, weatherOptions } from "../../utils/constants.js";
+import { signIn, signUp } from "../../utils/auth.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -11,6 +12,7 @@ import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Profile from "../Profile/Profile";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
@@ -161,6 +163,19 @@ function App() {
     });
   }
 
+  /*
+  /signIn function that:
+  1. Sends credentials
+  2. Saves token to localStorage if request successful
+  */
+  const signInUser = ({ email, password }) => {
+    // Check that the server gave access in its respone?
+    return signIn({ email, password }).then((res) => {
+      // i dont know if this is good enough or correct structure
+      return localStorage.setItem("jwt", res.token);
+    });
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -176,6 +191,7 @@ function App() {
                   openClothesModal={openClothesModal}
                   checked={checked}
                   onChange={handleChange}
+                  // different styles for logged in vs non-logged in
                 />
               )}
               <Routes>
@@ -241,13 +257,21 @@ function App() {
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning
-                isOpen={true === false}
+                isOpen={openModal === "log-in"}
               />
               <RegisterModal
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning
+                isOpen={openModal === "register"}
+              />
+
+              <EditProfileModal
+                closeModal={closeModal}
+                handleOffModalClick={handleOffModalClick}
+                handleEscapeClose={handleEscapeClose}
+                // Temp so i can see whats happenning...openModal === "edit-profile"
                 isOpen={true === true}
               />
 

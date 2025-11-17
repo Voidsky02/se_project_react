@@ -1,3 +1,6 @@
+// ALREADY FINISHED BACKEND LOGIC, JUST HAVE TO ENABLE FRONT END TO
+// COMMUNICATE WITH IT VIA API CALLS
+
 import { baseUrl, checkResponse } from "./api";
 
 // /signup
@@ -46,11 +49,15 @@ function signIn({ email, password }) {
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
-      // i think i take the token and put it into local storage
+      // make sure respone is good?
       return checkResponse(res);
     })
     .then((data) => {
+      // return server response data, save token to storage in
+      // FUNCTION INSIDE APP
       return data;
     })
     .catch((error) => console.error(`Sign-in failed: ${error}`));
 }
+
+export { signIn, signUp };
