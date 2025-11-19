@@ -5,7 +5,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { temperatureCheck } from "../../utils/weatherApi";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
+function Main({
+  weatherData,
+  clothingItems,
+  handleCardClick,
+  weatherOptions,
+  onCardLike,
+}) {
   // pass handleCardClick() to onChange property of ItemCard element / will be recieved from App
   const tempUnitContext = React.useContext(TemperatureUnitContext);
 
@@ -34,6 +40,7 @@ function Main({ weatherData, clothingItems, handleCardClick, weatherOptions }) {
               key={item._id}
               item={item}
               handleCardClick={handleCardClick}
+              onCardLike={onCardLike}
             />
           );
         })}

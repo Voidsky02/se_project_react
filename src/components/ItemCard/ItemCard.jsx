@@ -1,6 +1,12 @@
 import "./ItemCard.css";
 
-function ItemCard({ handleCardClick, item }) {
+function ItemCard({ handleCardClick, item, onCardLike }) {
+  // pass item data in same way we did handleClick()
+  const handleLike = (data) => {
+    onCardLike(data);
+  };
+
+  // ADD LIKE BUTTON WITH HANDLELIKE ATTACHED
   return (
     <>
       <div

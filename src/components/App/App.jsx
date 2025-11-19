@@ -14,6 +14,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Profile from "../Profile/Profile";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import {
@@ -110,6 +111,18 @@ function App() {
     setCardToBeDeleted(itemModalData.id);
   }
 
+  function openLogInModal() {
+    setOpenModal("log-in");
+  }
+
+  function openRegisterModal() {
+    setOpenModal("register");
+  }
+
+  function openEditProfileModal() {
+    setOpenModal("edit-profile");
+  }
+
   function closeModal() {
     setOpenModal("");
     setCardToBeDeleted(null);
@@ -163,6 +176,12 @@ function App() {
     });
   }
 
+  // signup function -> Attach this function to submit button on sign-up modal
+  function handleSignUpSubmit({ name, avatar, email, password }) {
+    // call fetch request function from auth.js here
+    signUp().then();
+  }
+
   /*
   /signIn function that:
   1. Sends credentials
@@ -174,6 +193,33 @@ function App() {
       // i dont know if this is good enough or correct structure
       return localStorage.setItem("jwt", res.token);
     });
+  };
+
+  // schools boilerplate -> adjust as needed to fit my code
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   return (
@@ -205,6 +251,7 @@ function App() {
                         weatherOptions={weatherOptions}
                         clothingItems={clothingItems}
                         handleCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
                       />
                     )
                   }
@@ -214,11 +261,13 @@ function App() {
                   path="/profile"
                   element={
                     clothingItems && (
-                      <Profile
-                        clothingItems={clothingItems}
-                        openClothesModal={openClothesModal}
-                        handleCardClick={handleCardClick}
-                      />
+                      <ProtectedRoute isLoggedIn={isLoggedIn}>
+                        <Profile
+                          clothingItems={clothingItems}
+                          openClothesModal={openClothesModal}
+                          handleCardClick={handleCardClick}
+                        />
+                      </ProtectedRoute>
                     )
                   }
                 />
@@ -259,6 +308,7 @@ function App() {
                 // Temp so i can see whats happenning
                 isOpen={openModal === "log-in"}
               />
+              {/* need to add 'or log in' button */}
               <RegisterModal
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
@@ -272,7 +322,7 @@ function App() {
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning...openModal === "edit-profile"
-                isOpen={true === true}
+                isOpen={openModal === "edit-profile"}
               />
 
               <Footer />
