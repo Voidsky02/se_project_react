@@ -13,20 +13,20 @@ const RegisterModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const resetInputs = () => {
     setEmail("");
     setPassword("");
     setName("");
-    setAvatarUrl("");
+    setAvatar("");
   };
 
   //   NEED FETCH REQUEST THAT REGISTERS, REPLACE ONADDITEM
   function handleSubmit(evt) {
     evt.preventDefault();
     // Does this need to be object?
-    onSignUp({ name, avatarUrl, email, password })
+    onSignUp({ name, avatar, email, password })
       .then(() => {
         return resetInputs();
       })
@@ -92,17 +92,17 @@ const RegisterModal = ({
         />
       </div>
       <div className="sign-up__form_element">
-        <label htmlFor="sign-up__avatarUrl" className="sign-up__label">
+        <label htmlFor="sign-up__avatar" className="sign-up__label">
           Avatar URL
         </label>
         <input
           className="sign-up__input sign-up__input_type_text"
-          id="sign-up__avatarUrl"
-          name="sign-up__avatarUrl"
+          id="sign-up__avatar"
+          name="sign-up__avatar"
           type="url"
           placeholder="Avatar URL"
-          onChange={(evt) => setAvatarUrl(evt.target.value)}
-          value={avatarUrl}
+          onChange={(evt) => setAvatar(evt.target.value)}
+          value={avatar}
           required
         />
       </div>

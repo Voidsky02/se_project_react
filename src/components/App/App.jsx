@@ -80,8 +80,8 @@ function App() {
     getClothingItems()
       .then((data) => {
         // ???? accidently changed this at some point
-        setClothingItems();
-        console.log(clothingItems);
+        setClothingItems(data.reverse());
+        console.log(data.reverse());
       })
       .catch((err) => {
         console.error(err);

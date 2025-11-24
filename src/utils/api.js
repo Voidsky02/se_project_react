@@ -1,7 +1,8 @@
 const baseUrl = "http://localhost:3001";
 
 const checkResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  console.log(`res = ${res}`);
+  return res.ok ? res.json() : Promise.reject(`api.js -> Error: ${res.status}`);
 };
 
 function getClothingItems() {
