@@ -26,7 +26,8 @@ function signUp({ name, avatar, email, password }) {
       return data;
     })
     .catch((error) => {
-      return console.error(`Sign-up failed: ${error}`);
+      console.error(`Sign-up failed: ${error}`);
+      return Promise.reject(`AUTH.JS ERROR: ${error}`);
     });
 }
 

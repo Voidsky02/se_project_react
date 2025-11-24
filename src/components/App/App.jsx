@@ -79,7 +79,9 @@ function App() {
 
     getClothingItems()
       .then((data) => {
-        setClothingItems(data.reverse());
+        // ???? accidently changed this at some point
+        setClothingItems();
+        console.log(clothingItems);
       })
       .catch((err) => {
         console.error(err);
@@ -179,7 +181,12 @@ function App() {
   // signup function -> Attach this function to submit button on sign-up modal
   function handleSignUpSubmit({ name, avatar, email, password }) {
     // call fetch request function from auth.js here
-    signUp().then();
+    return signUp({ name, avatar, email, password })
+      .then((data) => {
+        // Do more with this later - probably save to state or local storage
+        return console.log(data); // this is being returned as undefined
+      })
+      .catch((error) => console.error(`Error: Could not register ${error}`));
   }
 
   /*
@@ -314,7 +321,8 @@ function App() {
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning
-                isOpen={openModal === "register"}
+                isOpen={true === true}
+                onSignUp={handleSignUpSubmit}
               />
 
               <EditProfileModal

@@ -7,31 +7,33 @@ const RegisterModal = ({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  onSignUp,
 }) => {
   // state variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const resetInputs = () => {
     setEmail("");
     setPassword("");
     setName("");
-    setImageUrl("");
+    setAvatarUrl("");
   };
 
   //   NEED FETCH REQUEST THAT REGISTERS, REPLACE ONADDITEM
-  //   function handleSubmit(evt) {
-  //     evt.preventDefault();
-  //     // onAddItem(name, imageUrl, weather)
-  //       .then(() => {
-  //         return resetInputs();
-  //       })
-  //       .catch((err) => {
-  //         return alert(`Error ${err}: Could not submit clothing item`);
-  //       });
-  //   }
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    // Does this need to be object?
+    onSignUp({ name, avatarUrl, email, password })
+      .then(() => {
+        return resetInputs();
+      })
+      .catch((err) => {
+        return alert(`Error ${err}: Could not register user`);
+      });
+  }
 
   return (
     <ModalWithForm
@@ -42,7 +44,7 @@ const RegisterModal = ({
       handleOffModalClick={handleOffModalClick}
       handleEscapeClose={handleEscapeClose}
       isOpen={isOpen}
-      //   handleSubmit - made in file (based on how AddItemModal did it)
+      handleSubmit={handleSubmit}
     >
       <div className="sign-up__form_element">
         <label className="sign-up__label" htmlFor="sign-up__email">
@@ -90,17 +92,17 @@ const RegisterModal = ({
         />
       </div>
       <div className="sign-up__form_element">
-        <label htmlFor="sign-up__imageUrl" className="sign-up__label">
+        <label htmlFor="sign-up__avatarUrl" className="sign-up__label">
           Avatar URL
         </label>
         <input
           className="sign-up__input sign-up__input_type_text"
-          id="sign-up__imageUrl"
-          name="sign-up__imageUrl"
+          id="sign-up__avatarUrl"
+          name="sign-up__avatarUrl"
           type="url"
           placeholder="Avatar URL"
-          onChange={(evt) => setImageUrl(evt.target.value)}
-          value={imageUrl}
+          onChange={(evt) => setAvatarUrl(evt.target.value)}
+          value={avatarUrl}
           required
         />
       </div>
