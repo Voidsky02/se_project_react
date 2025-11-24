@@ -26,8 +26,7 @@ function signUp({ name, avatar, email, password }) {
       return data;
     })
     .catch((error) => {
-      console.error(`Sign-up failed: ${error}`);
-      return Promise.reject(`#2 AUTH.JS ERROR: ${error}`);
+      return Promise.reject(`Error ${err}: Could not register user`);
     });
 }
 
