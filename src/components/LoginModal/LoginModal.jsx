@@ -7,6 +7,7 @@ const LoginModal = ({
   handleOffModalClick,
   handleEscapeClose,
   isOpen,
+  onSignIn,
 }) => {
   // state variables
   const [email, setEmail] = useState("");
@@ -18,16 +19,16 @@ const LoginModal = ({
   };
 
   //   NEED FETCH REQUEST THAT LOGS IN, REPLACE ONADDITEM
-  //   function handleSubmit(evt) {
-  //     evt.preventDefault();
-  //     // onAddItem(name, imageUrl, weather)
-  //       .then(() => {
-  //         return resetInputs();
-  //       })
-  //       .catch((err) => {
-  //         return alert(`Error ${err}: Could not submit clothing item`);
-  //       });
-  //   }
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSignIn({ email, password })
+      .then(() => {
+        return resetInputs();
+      })
+      .catch((err) => {
+        return alert(`Error ${err}: Could not submit clothing item`);
+      });
+  }
 
   return (
     <ModalWithForm
@@ -39,6 +40,7 @@ const LoginModal = ({
       handleEscapeClose={handleEscapeClose}
       isOpen={isOpen}
       //   handleSubmit - made in file (based on how AddItemModal did it)
+      handleSubmit={handleSubmit}
     >
       <div className="log-in__form_element">
         <label className="log-in__label" htmlFor="log-in__email">

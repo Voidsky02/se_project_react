@@ -1,8 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
 const checkResponse = (res) => {
-  console.log(`res = ${res}`);
-  return res.ok ? res.json() : Promise.reject(`api.js -> Error: ${res.status}`);
+  return res.ok
+    ? res.json()
+    : Promise.reject(`checkResponse Failure -> Error: ${res.status}`);
 };
 
 function getClothingItems() {
@@ -16,6 +17,7 @@ function getClothingItems() {
     .catch((err) => console.error(`Failure to GET: ${err}`));
 }
 
+// Protect with token
 function postClothingItems(itemName, imageLink, weatherTemp) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -38,6 +40,7 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
     .catch((err) => console.error(`Failure to POST; ${err}`));
 }
 
+// Protect with token
 function deleteClothingItems(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
@@ -48,10 +51,28 @@ function deleteClothingItems(id) {
     .catch((err) => console.error(`Failure to DELETE: ${err}`));
 }
 
+// Protect this with token
+const updateUserData = ({ name, imageUrl }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      imageUrl: imageUrl,
+    }),
+  })
+    .then((res) => checkResponse(res))
+    .catch((err) => console.error(`Error ${err}: Failure to update user data`));
+};
+
 export {
   getClothingItems,
   postClothingItems,
   deleteClothingItems,
+  updateUserData,
   checkResponse,
   baseUrl,
 };

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children, isLoggedIn }) => {
   }
 
   //   if logged in, return the /profile component
-  return { children };
+  return children;
 };
 
 export default ProtectedRoute;

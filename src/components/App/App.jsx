@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi.js";
 import { location, weatherOptions } from "../../utils/constants.js";
-import { signIn, signUp } from "../../utils/auth.js";
+import { signIn, signUp, validateToken } from "../../utils/auth.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -21,6 +21,7 @@ import {
   getClothingItems,
   postClothingItems,
   deleteClothingItems,
+  updateUserData,
 } from "../../utils/api.js";
 
 function App() {
@@ -67,6 +68,24 @@ function App() {
     setChecked(!checked);
   };
 
+  // check if a user token already exists
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      validateToken(token)
+        .then((userData) => {
+          setCurrentUser(userData);
+          setIsLoggedIn(true);
+          console.log("TOKEN VERIFIED SUCCESSFULLY");
+          console.log(`USER DATA = ${JSON.stringify(userData)}`);
+        })
+        .catch((error) => {
+          console.log(`Error ${error}: Token validation failed`);
+          localStorage.removeItem("jwt");
+        });
+    }
+  }, []);
+
   useEffect(() => {
     getWeatherData(location.latitude, location.longitude)
       .then((data) => {
@@ -81,7 +100,6 @@ function App() {
       .then((data) => {
         // ???? accidently changed this at some point
         setClothingItems(data.reverse());
-        console.log(data.reverse());
       })
       .catch((err) => {
         console.error(err);
@@ -194,12 +212,30 @@ function App() {
   1. Sends credentials
   2. Saves token to localStorage if request successful
   */
-  const signInUser = ({ email, password }) => {
+  const handleSignInSubmit = ({ email, password }) => {
     // Check that the server gave access in its respone?
-    return signIn({ email, password }).then((res) => {
-      // i dont know if this is good enough or correct structure
-      return localStorage.setItem("jwt", res.token);
-    });
+    return signIn({ email, password })
+      .then((res) => {
+        console.log(`handleSignInSubmit = ${JSON.stringify(res)}`);
+        console.log(`TOKEN = ${res.token}`);
+        // i dont know if this is good enough or correct structure
+        localStorage.setItem("jwt", res.token);
+        return validateToken(res.token);
+      })
+      .then((data) => {
+        setCurrentUser(data);
+        setIsLoggedIn(true);
+        closeModal();
+      })
+      .catch((error) => console.error(`Error ${error}: Could not sign in`));
+  };
+
+  const handleSignOut = () => {
+    // doesnt require any api calls correct? just...
+    // #1. Remove token from local storage
+    localStorage.removeItem("jwt");
+    // #2. Change isLoggedIn to false
+    setIsLoggedIn(false);
   };
 
   // schools boilerplate -> adjust as needed to fit my code
@@ -245,6 +281,9 @@ function App() {
                   checked={checked}
                   onChange={handleChange}
                   // different styles for logged in vs non-logged in
+                  isLoggedIn={isLoggedIn}
+                  openLogInModal={openLogInModal}
+                  openRegisterModal={openRegisterModal}
                 />
               )}
               <Routes>
@@ -273,6 +312,8 @@ function App() {
                           clothingItems={clothingItems}
                           openClothesModal={openClothesModal}
                           handleCardClick={handleCardClick}
+                          openEditProfileModal={openEditProfileModal}
+                          handleSignOut={handleSignOut}
                         />
                       </ProtectedRoute>
                     )
@@ -314,6 +355,7 @@ function App() {
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning
                 isOpen={openModal === "log-in"}
+                onSignIn={handleSignInSubmit}
               />
               {/* need to add 'or log in' button */}
               <RegisterModal
@@ -321,7 +363,7 @@ function App() {
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 // Temp so i can see whats happenning
-                isOpen={true === true}
+                isOpen={openModal === "register"}
                 onSignUp={handleSignUpSubmit}
               />
 

@@ -40,12 +40,6 @@
   letter-spacing: 0%;
 }
 
-.header__button {
-  margin: 0;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
 /* Transport the below styles to its own user.css stylesheet in future */
 .header__user {
   display: flex;
@@ -66,4 +60,17 @@
 .header__user-image {
   width: 40px;
   height: 40px;
+}
+
+.header__button {
+  margin: 0;
+  margin-left: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: fit-content;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 24px;
 }

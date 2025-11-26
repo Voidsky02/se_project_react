@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -9,11 +9,25 @@ const EditProfileModal = ({
   handleEscapeClose,
   isOpen,
 }) => {
+  // use CurrentUserContext to fill the input fields with the current user data
+  const userContext = useContext(CurrentUserContext);
+
+  // initial state is the logged-in users info
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  // use CurrentUserContext to fill the input fields with the current user data
-  const userContext = useContext(CurrentUserContext);
+  // get users info on load, and fill inputs with current data
+  useEffect(() => {
+    // #1. get currentUserContext and set state variables
+    // Then set value of inputs to state variable, and have their onChange
+    // events update the state. This wont create infinite loop cause it only
+    // sets the value when page loads, not on every update.
+    //
+    // but do have currentUserContext as a dependent so if THAT changes it
+    // re-renders
+    setName(userContext.name);
+    setImageUrl(userContext.avatar);
+  }, [userContext, isOpen]);
 
   return (
     <ModalWithForm
@@ -52,7 +66,7 @@ const EditProfileModal = ({
           name="edit-profile__avatar"
           type="url"
           placeholder="image url"
-          onChange={(evt) => setName(evt.target.value)}
+          onChange={(evt) => setImageUrl(evt.target.value)}
           value={imageUrl}
           required
         ></input>

@@ -1,6 +1,12 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
 .sidebar__user {
   display: flex;
   gap: 12px;
+  margin-bottom: 24px;
 }
 
 .sidebar__user-image {
@@ -12,6 +18,17 @@
   text-align: center;
   text-wrap: nowrap;
   font-weight: bold;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.sidebar__button {
+  margin-bottom: 8px;
+  text-align: left;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 700;
+  font-style: bold;
   font-size: 20px;
   line-height: 1;
 }

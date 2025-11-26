@@ -10,6 +10,9 @@ function Header({
   openClothesModal,
   checked,
   onChange,
+  isLoggedIn,
+  openLogInModal,
+  openRegisterModal,
 }) {
   const siteLogo = "src/images/site-logo.svg";
   const currentDate = new Date().toLocaleString("default", {
@@ -33,27 +36,48 @@ function Header({
         </div>
         <div className="header__right-side">
           <ToggleSwitch value={checked} onChange={onChange} />
-          <p
-            className="header__button"
-            type="button"
-            onClick={openClothesModal}
-          >
-            + Add Clothes
-          </p>
-          {/* Was told I may be right in making User a component, */}
-          {/* but for now, it is not required */}
-          <Link to="/profile">
-            <div className="header__user">
-              <p className="header__user-name">Terrence Tegegne</p>
-              {/* // if there is no image provided, set placeholder w/ the users  */}
-              {/* first letter of name */}
-              <img
-                className="header__user-image"
-                src={userPicture /*? userPicture : placeholder */}
-                alt="temporary user picture"
-              />
-            </div>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              {/* rendered when logged in */}
+              <p
+                className="header__button"
+                type="button"
+                onClick={openClothesModal}
+              >
+                + Add Clothes
+              </p>
+              {/* Was told I may be right in making User a component, */}
+              {/* but for now, it is not required */}
+              <Link to="/profile">
+                <div className="header__user">
+                  <p className="header__user-name">Terrence Tegegne</p>
+                  {/* // if there is no image provided, set placeholder w/ the users  */}
+                  {/* first letter of name */}
+                  <img
+                    className="header__user-image"
+                    src={userPicture /*? userPicture : placeholder */}
+                    alt="temporary user picture"
+                  />
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              {/* rendered when logged out */}
+              <button
+                className="header__button"
+                onClick={() => openLogInModal()}
+              >
+                Sign In
+              </button>
+              <button
+                className="header__button"
+                onClick={() => openRegisterModal()}
+              >
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       </div>
     </>
