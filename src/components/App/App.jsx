@@ -45,6 +45,7 @@ function App() {
     image: "",
     weather: "",
     id: null,
+    owner: "",
   });
   const [openModal, setOpenModal] = useState("");
 
@@ -76,8 +77,6 @@ function App() {
         .then((userData) => {
           setCurrentUser(userData);
           setIsLoggedIn(true);
-          console.log("TOKEN VERIFIED SUCCESSFULLY");
-          console.log(`USER DATA = ${JSON.stringify(userData)}`);
         })
         .catch((error) => {
           console.log(`Error ${error}: Token validation failed`);
@@ -98,7 +97,6 @@ function App() {
 
     getClothingItems()
       .then((data) => {
-        // ???? accidently changed this at some point
         setClothingItems(data.reverse());
       })
       .catch((err) => {
@@ -203,6 +201,7 @@ function App() {
       .then((data) => {
         // Do more with this later - probably save to state or local storage
         return console.log(data); // this is being returned as undefined
+        // ***need to close modal, and immediatley sign new user in***
       })
       .catch((error) => console.error(`Error: Could not register ${error}`));
   }
@@ -216,9 +215,6 @@ function App() {
     // Check that the server gave access in its respone?
     return signIn({ email, password })
       .then((res) => {
-        console.log(`handleSignInSubmit = ${JSON.stringify(res)}`);
-        console.log(`TOKEN = ${res.token}`);
-        // i dont know if this is good enough or correct structure
         localStorage.setItem("jwt", res.token);
         return validateToken(res.token);
       })
@@ -325,6 +321,7 @@ function App() {
                 title={itemModalData.title}
                 image={itemModalData.image}
                 weather={itemModalData.weather}
+                owner={itemModalData.owner}
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}

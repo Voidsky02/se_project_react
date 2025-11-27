@@ -19,10 +19,12 @@ function getClothingItems() {
 
 // Protect with token
 function postClothingItems(itemName, imageLink, weatherTemp) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name: itemName,
@@ -34,16 +36,19 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
       return checkResponse(res);
     })
     .then((data) => {
-      console.log(data);
       return data;
     })
-    .catch((err) => console.error(`Failure to POST; ${err}`));
+    .catch((err) => console.error(`Failure to POST: ${err}`));
 }
 
 // Protect with token
 function deleteClothingItems(id) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   })
     .then((res) => {
       return checkResponse(res);
@@ -52,7 +57,8 @@ function deleteClothingItems(id) {
 }
 
 // Protect this with token
-const updateUserData = ({ name, imageUrl }, token) => {
+const updateUserData = ({ name, imageUrl }) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {

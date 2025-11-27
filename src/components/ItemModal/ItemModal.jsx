@@ -8,17 +8,16 @@ function ItemModal({
   title,
   image,
   weather,
+  owner,
   closeModal,
   handleOffModalClick,
   isOpen,
   openConfirmationModal,
 }) {
-  //  check if the delete button should be shown in the item modal
   const currentUser = useContext(CurrentUserContext);
 
   // Checking if the current user is the owner of the current clothing item...
-  // I DONT KNOW WHERE SELECTED CARD COMES FROM
-  // const isOwn = selectedCard.owner === currentUser._id;
+  const isOwn = owner === currentUser._id;
 
   return (
     <div
@@ -34,14 +33,14 @@ function ItemModal({
         <img className="item-modal__image" src={image} alt={`${title}`} />
         <h3 className="item-modal__title">{title}</h3>
         {/* delete button is rendered depending on wether card is owned by user */}
-        {/* {isOwn && (
+        {isOwn && (
           <button
             className="item-modal__delete-btn"
             onClick={openConfirmationModal}
           >
             Delete Item
           </button>
-        )} */}
+        )}
         <p className="item-modal__description">{`Weather: ${weather}`}</p>
       </div>
     </div>

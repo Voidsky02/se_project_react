@@ -16,6 +16,7 @@ function ItemCard({ handleCardClick, item, onCardLike }) {
             image: item.imageUrl,
             weather: item.weather,
             id: item._id,
+            owner: item.owner,
           };
           handleCardClick(itemModalInfo);
         }}
