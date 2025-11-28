@@ -8,6 +8,8 @@ function Profile({
   handleCardClick,
   openEditProfileModal,
   handleSignOut,
+  onCardLike,
+  isLoggedIn,
 }) {
   return (
     <>
@@ -20,6 +22,8 @@ function Profile({
           clothingItems={clothingItems}
           openClothesModal={openClothesModal}
           handleCardClick={handleCardClick}
+          onCardLike={onCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </main>
     </>

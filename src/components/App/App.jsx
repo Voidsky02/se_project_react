@@ -22,6 +22,8 @@ import {
   postClothingItems,
   deleteClothingItems,
   updateUserData,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/api.js";
 
 function App() {
@@ -97,6 +99,7 @@ function App() {
 
     getClothingItems()
       .then((data) => {
+        console.log(`clothingItem Data = ${JSON.stringify(data)}`);
         setClothingItems(data.reverse());
       })
       .catch((err) => {
@@ -235,30 +238,35 @@ function App() {
   };
 
   // schools boilerplate -> adjust as needed to fit my code
+  //
+  // each clothing item has a "likes" property that is an array containing
+  // every user who has liked that post.
+  //
+  // So when a user likes a clothing item,
+  // we add that users ID to the clothing items "likes" array
+  //
+  // NOTICE => FUNCTION EXPECTS AN OBJECT AKA THE itemInfo OBJECT
   const handleCardLike = ({ id, isLiked }) => {
+    console.log(`FROM APP.JSX: id = ${id}, isLiked = ${isLiked}`);
     const token = localStorage.getItem("jwt");
-    // Check if this card is not currently liked
-    !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+    //
+    if (!isLiked) {
+      return addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      return removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -294,6 +302,7 @@ function App() {
                         clothingItems={clothingItems}
                         handleCardClick={handleCardClick}
                         onCardLike={handleCardLike}
+                        isLoggedIn={isLoggedIn}
                       />
                     )
                   }
@@ -310,6 +319,8 @@ function App() {
                           handleCardClick={handleCardClick}
                           openEditProfileModal={openEditProfileModal}
                           handleSignOut={handleSignOut}
+                          onCardLike={handleCardLike}
+                          isLoggedIn={isLoggedIn}
                         />
                       </ProtectedRoute>
                     )

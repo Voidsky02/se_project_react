@@ -3,7 +3,13 @@ import ItemCard from "../../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
-function ClothesSection({ clothingItems, openClothesModal, handleCardClick }) {
+function ClothesSection({
+  clothingItems,
+  openClothesModal,
+  handleCardClick,
+  onCardLike,
+  isLoggedIn,
+}) {
   // update this component to show only the cards added by the current user
   const currentUser = useContext(CurrentUserContext);
   return (
@@ -22,6 +28,8 @@ function ClothesSection({ clothingItems, openClothesModal, handleCardClick }) {
               key={item._id}
               item={item}
               handleCardClick={handleCardClick}
+              onCardLike={onCardLike}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}

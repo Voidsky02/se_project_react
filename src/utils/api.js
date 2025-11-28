@@ -74,6 +74,33 @@ const updateUserData = ({ name, imageUrl }) => {
     .catch((err) => console.error(`Error ${err}: Failure to update user data`));
 };
 
+// first argument is cards id
+const addCardLike = (id, token) => {
+  console.log(`FROM API.JS: id = ${id}, token = ${token}`);
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PATCH",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }) //add current users id to the clothingItems likes array
+    .then((res) => checkResponse(res))
+    .catch((error) => console.error(`ERROR ${error}: Could not like card`));
+};
+
+// first argument is cards id
+const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }) //remove current users id from the clothingItems likes array
+    .then((res) => checkResponse(res))
+    .catch((error) => {
+      `ERROR ${error}: Could not remove like from card`;
+    });
+};
+
 export {
   getClothingItems,
   postClothingItems,
@@ -81,4 +108,6 @@ export {
   updateUserData,
   checkResponse,
   baseUrl,
+  addCardLike,
+  removeCardLike,
 };
