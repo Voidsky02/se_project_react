@@ -13,7 +13,6 @@ function Main({
   onCardLike,
   isLoggedIn,
 }) {
-  // pass handleCardClick() to onChange property of ItemCard element / will be recieved from App
   const tempUnitContext = React.useContext(TemperatureUnitContext);
 
   const currentWeatherType = temperatureCheck(

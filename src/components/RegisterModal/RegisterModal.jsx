@@ -9,7 +9,6 @@ const RegisterModal = ({
   isOpen,
   onSignUp,
 }) => {
-  // state variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -22,10 +21,8 @@ const RegisterModal = ({
     setAvatar("");
   };
 
-  //   NEED FETCH REQUEST THAT REGISTERS, REPLACE ONADDITEM
   function handleSubmit(evt) {
     evt.preventDefault();
-    // Does this need to be object?
     onSignUp({ name, avatar, email, password })
       .then(() => {
         return resetInputs();

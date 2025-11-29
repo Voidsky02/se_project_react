@@ -10,7 +10,7 @@ function ClothesSection({
   onCardLike,
   isLoggedIn,
 }) {
-  // update this component to show only the cards added by the current user
+  // component only shows cards owned by logged in user
   const currentUser = useContext(CurrentUserContext);
   return (
     <section className="clothes-section__container">
@@ -22,16 +22,19 @@ function ClothesSection({
       </div>
       <div className="cards__container">
         {clothingItems.map((item) => {
-          return (
-            // only show cards owned by user provided by CurrentUserContext
-            <ItemCard
-              key={item._id}
-              item={item}
-              handleCardClick={handleCardClick}
-              onCardLike={onCardLike}
-              isLoggedIn={isLoggedIn}
-            />
-          );
+          if (item.owner === currentUser._id) {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                handleCardClick={handleCardClick}
+                onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+            );
+          } else {
+            return;
+          }
         })}
       </div>
     </section>

@@ -62,6 +62,15 @@
   height: 40px;
 }
 
+.user-image__placeholder {
+  border-radius: 50%;
+  background-color: blue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header__button {
   margin: 0;
   margin-left: 20px;

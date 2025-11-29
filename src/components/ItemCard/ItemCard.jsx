@@ -2,8 +2,6 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
 
-// I need isLoggedIn to determine if i should display like button, but do i
-// need currentUser data????? mabey to see if they liked the card or not
 function ItemCard({ handleCardClick, item, onCardLike, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
   const isLiked = item.likes.some((id) => id === currentUser._id);
@@ -19,7 +17,6 @@ function ItemCard({ handleCardClick, item, onCardLike, isLoggedIn }) {
     onCardLike(itemInfo);
   };
 
-  // ADD LIKE BUTTON WITH HANDLELIKE ATTACHED
   return (
     <>
       <div

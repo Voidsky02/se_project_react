@@ -20,7 +20,6 @@ function Header({
     day: "numeric",
   });
   const location = `${cityName} (${countryName})`;
-  const userPicture = "src/images/temp-profile-pic.svg";
 
   // change styles depending on wether user is authorized or not
   const currentUser = useContext(CurrentUserContext);
@@ -46,18 +45,22 @@ function Header({
               >
                 + Add Clothes
               </p>
-              {/* Was told I may be right in making User a component, */}
-              {/* but for now, it is not required */}
               <Link to="/profile">
                 <div className="header__user">
-                  <p className="header__user-name">Terrence Tegegne</p>
+                  <p className="header__user-name">{currentUser.name}</p>
                   {/* // if there is no image provided, set placeholder w/ the users  */}
                   {/* first letter of name */}
-                  <img
-                    className="header__user-image"
-                    src={userPicture /*? userPicture : placeholder */}
-                    alt="temporary user picture"
-                  />
+                  {currentUser.avatar ? (
+                    <img
+                      className="header__user-image"
+                      src={currentUser.avatar}
+                      alt="users profile picture"
+                    />
+                  ) : (
+                    <div className="header__user-image user-image__placeholder">
+                      {currentUser.name[0]}
+                    </div>
+                  )}
                 </div>
               </Link>
             </>

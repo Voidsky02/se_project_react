@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import "./ItemModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-// import isOpen from App.jsx, this will be used to add the ".modal_opened" class.
-// which should be used to render the modals instead of rendering them in App
 
 function ItemModal({
   title,

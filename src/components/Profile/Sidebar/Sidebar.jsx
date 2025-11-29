@@ -1,26 +1,34 @@
+import { useContext } from "react";
 import "./Sidebar.css";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function Sidebar({ openEditProfileModal, handleSignOut }) {
-  const userPicture = "src/images/temp-profile-pic.svg";
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <aside className="sidebar">
       <div className="sidebar__user">
-        <img
-          className="sidebar__user-image"
-          src={userPicture}
-          alt="temporary user picture"
-        />
-        <p className="sidebar__user-name">Terrence Tegegne</p>
+        {currentUser.avatar ? (
+          <img
+            className="sidebar__user-image"
+            src={currentUser.avatar}
+            alt="Users profile picture"
+          />
+        ) : (
+          <div className="sidebar__user-image user-image__placeholder">
+            {currentUser.name[0]}
+          </div>
+        )}
+        <p className="sidebar__user-name">{currentUser.name}</p>
       </div>
-      {/* implement edit-profile button below */}
+
       <button
         className="sidebar__button"
         onClick={() => openEditProfileModal()}
       >
         Change profile data
       </button>
-      {/* implement sign-out button below */}
+
       <button className="sidebar__button" onClick={() => handleSignOut()}>
         Log out
       </button>

@@ -1,16 +1,6 @@
-// ALREADY FINISHED BACKEND LOGIC, JUST HAVE TO ENABLE FRONT END TO
-// COMMUNICATE WITH IT VIA API CALLS
-
 import { baseUrl, checkResponse } from "./api";
 
-// /signup
-// method: "POST",
-// headers: {
-//   "Content-Type": "application/json",
-// },
-// body: JSON.stringify({ name, avatar, email, password })
-//
-// destructure object..
+// sign in user and close modal
 function signUp({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -21,25 +11,16 @@ function signUp({ name, avatar, email, password }) {
   })
     .then((res) => checkResponse(res)) //checkResponse throws error if data is not correct, this could be end of chain in auth.js and have the rest taken away by the functions in app.jsx
     .then((data) => {
-      // i think i sign them in and then take the token and put it into
-      // local storage
+      console.log(`SignUp response = ${JSON.stringify(data)}`);
       return data;
     })
     .catch((error) => {
-      return Promise.reject(`Error ${err}: Could not register user`);
+      return Promise.reject(`Error ${error}: Could not register user`);
     });
 }
 
 //
 
-// /signin
-// method: "POST",
-// headers: {
-//   "Content-Type": "application/json",
-// },
-// body: JSON.stringify({ email, password })
-//
-// destructure object..
 function signIn({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
@@ -49,14 +30,10 @@ function signIn({ email, password }) {
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
-      // make sure respone is good?
       return checkResponse(res);
-      // SERVER SENDS ONLY THE TOKEN BACK, NOTHING MORE!!!!!!!!!
+      // server sends token back
     })
     .then((data) => {
-      console.log(`SignIn (auth.js) = ${JSON.stringify(data)}`);
-      // return server response data, save token to storage in
-      // FUNCTION INSIDE APP
       return data;
     })
     .catch((error) => {

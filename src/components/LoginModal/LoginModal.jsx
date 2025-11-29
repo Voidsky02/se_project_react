@@ -9,7 +9,6 @@ const LoginModal = ({
   isOpen,
   onSignIn,
 }) => {
-  // state variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +17,6 @@ const LoginModal = ({
     setPassword("");
   };
 
-  //   NEED FETCH REQUEST THAT LOGS IN, REPLACE ONADDITEM
   function handleSubmit(evt) {
     evt.preventDefault();
     onSignIn({ email, password })
@@ -39,7 +37,6 @@ const LoginModal = ({
       handleOffModalClick={handleOffModalClick}
       handleEscapeClose={handleEscapeClose}
       isOpen={isOpen}
-      //   handleSubmit - made in file (based on how AddItemModal did it)
       handleSubmit={handleSubmit}
     >
       <div className="log-in__form_element">

@@ -17,7 +17,6 @@ function getClothingItems() {
     .catch((err) => console.error(`Failure to GET: ${err}`));
 }
 
-// Protect with token
 function postClothingItems(itemName, imageLink, weatherTemp) {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
@@ -41,7 +40,6 @@ function postClothingItems(itemName, imageLink, weatherTemp) {
     .catch((err) => console.error(`Failure to POST: ${err}`));
 }
 
-// Protect with token
 function deleteClothingItems(id) {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}`, {
@@ -56,7 +54,6 @@ function deleteClothingItems(id) {
     .catch((err) => console.error(`Failure to DELETE: ${err}`));
 }
 
-// Protect this with token
 const updateUserData = ({ name, imageUrl }) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/users/me`, {
@@ -71,19 +68,22 @@ const updateUserData = ({ name, imageUrl }) => {
     }),
   })
     .then((res) => checkResponse(res))
-    .catch((err) => console.error(`Error ${err}: Failure to update user data`));
+    .catch((err) =>
+      console.error(`Error ${err}: Failure to send update user request`)
+    );
 };
 
 // first argument is cards id
 const addCardLike = (id, token) => {
-  console.log(`FROM API.JS: id = ${id}, token = ${token}`);
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PATCH",
     headers: {
       authorization: `Bearer ${token}`,
     },
   }) //add current users id to the clothingItems likes array
-    .then((res) => checkResponse(res))
+    .then((res) => {
+      return checkResponse(res);
+    })
     .catch((error) => console.error(`ERROR ${error}: Could not like card`));
 };
 

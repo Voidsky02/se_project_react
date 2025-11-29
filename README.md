@@ -18,3 +18,7 @@
 ![screenshot of profile section] (src/images/profile-section-demo-pic.png)
 
 ![screenshot of item viewing section] (src/images/item-modal-demo-pic.png)
+
+## Link to Backend Project:
+
+[se_project_express](https://github.com/Voidsky02/se_project_express)

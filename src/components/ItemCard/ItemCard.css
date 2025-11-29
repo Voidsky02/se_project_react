@@ -19,8 +19,6 @@
 .item__name {
   margin: 0;
   text-align: center;
-  /* position: absolute;
-  top: 15px; */
   background-color: #ffffff;
   border-radius: 4px;
   font-size: 16px;
@@ -43,7 +41,7 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
-  /* background: none; */
+  background: none;
   border: none;
   cursor: pointer;
 }

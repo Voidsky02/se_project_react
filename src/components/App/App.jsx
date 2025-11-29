@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi.js";
@@ -99,7 +99,6 @@ function App() {
 
     getClothingItems()
       .then((data) => {
-        console.log(`clothingItem Data = ${JSON.stringify(data)}`);
         setClothingItems(data.reverse());
       })
       .catch((err) => {
@@ -107,6 +106,20 @@ function App() {
         alert("Error: Could not retrieve clothing data");
       });
   }, []);
+
+  const closeModal = useCallback(() => {
+    setOpenModal("");
+    setCardToBeDeleted(null);
+  }, []);
+
+  const handleEscapeClose = useCallback(
+    (evt) => {
+      if (evt.key === "Escape") {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
 
   useEffect(() => {
     if (openModal) {
@@ -117,7 +130,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleEscapeClose);
     };
-  }, [openModal]);
+  }, [openModal, handleEscapeClose]);
 
   function openItemModal() {
     setOpenModal("item");
@@ -142,11 +155,6 @@ function App() {
 
   function openEditProfileModal() {
     setOpenModal("edit-profile");
-  }
-
-  function closeModal() {
-    setOpenModal("");
-    setCardToBeDeleted(null);
   }
 
   function handleCardDelete() {
@@ -174,12 +182,6 @@ function App() {
     }
   }
 
-  const handleEscapeClose = (evt) => {
-    if (evt.key === "Escape") {
-      closeModal();
-    }
-  };
-
   function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
     return postClothingItems(itemName, imageUrl, weatherTemp).then((data) => {
       const item = {
@@ -197,25 +199,24 @@ function App() {
     });
   }
 
-  // signup function -> Attach this function to submit button on sign-up modal
-  function handleSignUpSubmit({ name, avatar, email, password }) {
-    // call fetch request function from auth.js here
-    return signUp({ name, avatar, email, password })
-      .then((data) => {
-        // Do more with this later - probably save to state or local storage
-        return console.log(data); // this is being returned as undefined
-        // ***need to close modal, and immediatley sign new user in***
-      })
-      .catch((error) => console.error(`Error: Could not register ${error}`));
+  async function handleSignUpSubmit({ name, avatar, email, password }) {
+    try {
+      await signUp({ name, avatar, email, password });
+      const newUserSignIn = await signIn({ email, password });
+
+      localStorage.setItem("jwt", newUserSignIn.token);
+      const finishedUser = await validateToken(newUserSignIn.token);
+
+      setCurrentUser(finishedUser);
+      setIsLoggedIn(true);
+      closeModal();
+    } catch (error) {
+      console.error(`Error ${error}: Sign-up Failed.`);
+    }
   }
 
-  /*
-  /signIn function that:
-  1. Sends credentials
-  2. Saves token to localStorage if request successful
-  */
+  // Sends credentials & Saves token to localStorage if request successful
   const handleSignInSubmit = ({ email, password }) => {
-    // Check that the server gave access in its respone?
     return signIn({ email, password })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
@@ -230,24 +231,11 @@ function App() {
   };
 
   const handleSignOut = () => {
-    // doesnt require any api calls correct? just...
-    // #1. Remove token from local storage
     localStorage.removeItem("jwt");
-    // #2. Change isLoggedIn to false
     setIsLoggedIn(false);
   };
 
-  // schools boilerplate -> adjust as needed to fit my code
-  //
-  // each clothing item has a "likes" property that is an array containing
-  // every user who has liked that post.
-  //
-  // So when a user likes a clothing item,
-  // we add that users ID to the clothing items "likes" array
-  //
-  // NOTICE => FUNCTION EXPECTS AN OBJECT AKA THE itemInfo OBJECT
   const handleCardLike = ({ id, isLiked }) => {
-    console.log(`FROM APP.JSX: id = ${id}, isLiked = ${isLiked}`);
     const token = localStorage.getItem("jwt");
     //
     if (!isLiked) {
@@ -267,6 +255,18 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
+  };
+
+  const handleEditProfileSubmit = (newUserinfo) => {
+    return updateUserData(newUserinfo)
+      .then((newUser) => {
+        setCurrentUser(newUser);
+        closeModal();
+        return;
+      })
+      .catch((error) =>
+        console.error(`Error ${error}: Failure to update user data`)
+      );
   };
 
   return (
@@ -356,21 +356,18 @@ function App() {
                 onAddItem={handleAdditemSubmit}
               />
 
-              {/* Add LogIn Modal here */}
               <LoginModal
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
-                // Temp so i can see whats happenning
                 isOpen={openModal === "log-in"}
                 onSignIn={handleSignInSubmit}
               />
-              {/* need to add 'or log in' button */}
+
               <RegisterModal
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
-                // Temp so i can see whats happenning
                 isOpen={openModal === "register"}
                 onSignUp={handleSignUpSubmit}
               />
@@ -379,8 +376,8 @@ function App() {
                 closeModal={closeModal}
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
-                // Temp so i can see whats happenning...openModal === "edit-profile"
                 isOpen={openModal === "edit-profile"}
+                handleEditProfileSubmit={handleEditProfileSubmit}
               />
 
               <Footer />
