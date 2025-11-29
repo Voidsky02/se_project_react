@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import "./ProtectedRoute.css";
 
 const ProtectedRoute = ({ children, isLoggedIn }) => {
   if (!isLoggedIn) {
