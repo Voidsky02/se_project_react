@@ -18,44 +18,41 @@ function ItemCard({ handleCardClick, item, onCardLike, isLoggedIn }) {
   };
 
   return (
-    <>
-      <div
-        onClick={() => {
-          const itemModalInfo = {
-            title: item.name,
-            image: item.imageUrl,
-            weather: item.weather,
-            id: item._id,
-            owner: item.owner,
-          };
-          handleCardClick(itemModalInfo);
-        }}
-        className="item__card"
-      >
-        <div className="item__header">
-          <h2 className="item__name">{item.name}</h2>
-          {isLoggedIn ? (
-            <>
-              <button className="item__button" onClick={handleLike}>
-                <img
-                  className="item__button_image"
-                  src={
-                    isLiked
-                      ? "src/images/heart-liked.svg"
-                      : "src/images/heart-default.svg"
-                  }
-                  alt="heart-icon"
-                />
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
-
-        <img className="item__image" src={item.imageUrl} alt={item.name} />
+    <div
+      onClick={() => {
+        const itemModalInfo = {
+          title: item.name,
+          image: item.imageUrl,
+          weather: item.weather,
+          id: item._id,
+          owner: item.owner,
+        };
+        handleCardClick(itemModalInfo);
+      }}
+      className="item__card"
+    >
+      <div className="item__header">
+        <h2 className="item__name">{item.name}</h2>
+        {isLoggedIn ? (
+          <>
+            <button className="item__button" onClick={handleLike}>
+              <img
+                className="item__button_image"
+                src={
+                  isLiked
+                    ? "src/images/heart-liked.svg"
+                    : "src/images/heart-default.svg"
+                }
+                alt="heart-icon"
+              />
+            </button>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
-    </>
+      <img className="item__image" src={item.imageUrl} alt={item.name} />
+    </div>
   );
 }
 

@@ -11,11 +11,12 @@ function ItemModal({
   handleOffModalClick,
   isOpen,
   openConfirmationModal,
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
   // Checking if the current user is the owner of the current clothing item...
-  const isOwn = owner === currentUser._id;
+  const isOwn = isLoggedIn && owner === currentUser._id;
 
   return (
     <div

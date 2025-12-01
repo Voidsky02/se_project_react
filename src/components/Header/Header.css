@@ -8,10 +8,9 @@
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-style: Bold;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0px;
 }
 
 .header a {
@@ -34,10 +33,9 @@
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-style: Bold;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0px;
 }
 
 /* Transport the below styles to its own user.css stylesheet in future */
@@ -47,10 +45,9 @@
   gap: 12px;
   margin-left: 20px;
   font-weight: 700;
-  font-style: Bold;
   font-size: 20px;
   line-height: 1;
-  letter-spacing: 0%;
+  letter-spacing: 0px;
 }
 
 .header__user-name {
@@ -79,7 +76,6 @@
   border: none;
   width: fit-content;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
 }

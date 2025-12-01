@@ -64,7 +64,7 @@ const updateUserData = ({ name, imageUrl }) => {
     },
     body: JSON.stringify({
       name: name,
-      imageUrl: imageUrl,
+      avatar: imageUrl,
     }),
   })
     .then((res) => checkResponse(res))
@@ -76,7 +76,7 @@ const updateUserData = ({ name, imageUrl }) => {
 // first argument is cards id
 const addCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PATCH",
+    method: "PUT",
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -84,7 +84,6 @@ const addCardLike = (id, token) => {
     .then((res) => {
       return checkResponse(res);
     })
-    .catch((error) => console.error(`ERROR ${error}: Could not like card`));
 };
 
 // first argument is cards id
@@ -96,9 +95,6 @@ const removeCardLike = (id, token) => {
     },
   }) //remove current users id from the clothingItems likes array
     .then((res) => checkResponse(res))
-    .catch((error) => {
-      `ERROR ${error}: Could not remove like from card`;
-    });
 };
 
 export {

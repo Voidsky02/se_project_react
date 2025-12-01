@@ -12,21 +12,19 @@ function Profile({
   isLoggedIn,
 }) {
   return (
-    <>
-      <main className="profile__container">
-        <Sidebar
-          openEditProfileModal={openEditProfileModal}
-          handleSignOut={handleSignOut}
-        />
-        <ClothesSection
-          clothingItems={clothingItems}
-          openClothesModal={openClothesModal}
-          handleCardClick={handleCardClick}
-          onCardLike={onCardLike}
-          isLoggedIn={isLoggedIn}
-        />
-      </main>
-    </>
+    <main className="profile__container">
+      <Sidebar
+        openEditProfileModal={openEditProfileModal}
+        handleSignOut={handleSignOut}
+      />
+      <ClothesSection
+        clothingItems={clothingItems}
+        openClothesModal={openClothesModal}
+        handleCardClick={handleCardClick}
+        onCardLike={onCardLike}
+        isLoggedIn={isLoggedIn}
+      />
+    </main>
   );
 }
 

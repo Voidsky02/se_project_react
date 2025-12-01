@@ -2,7 +2,7 @@ import React from "react";
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { temperatureCheck } from "../../utils/weatherApi";
+import { checkTemperature } from "../../utils/weatherApi";
 import TemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({
@@ -15,7 +15,7 @@ function Main({
 }) {
   const tempUnitContext = React.useContext(TemperatureUnitContext);
 
-  const currentWeatherType = temperatureCheck(
+  const currentWeatherType = checkTemperature(
     Number(weatherData.temperature[tempUnitContext.currentTemperatureUnit]),
     tempUnitContext.currentTemperatureUnit
   );

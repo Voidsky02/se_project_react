@@ -182,14 +182,8 @@ function App() {
     }
   }
 
-  function handleAdditemSubmit(itemName, imageUrl, weatherTemp) {
-    return postClothingItems(itemName, imageUrl, weatherTemp).then((data) => {
-      const item = {
-        _id: data._id,
-        name: data.name,
-        weather: data.weather,
-        imageUrl: data.imageUrl,
-      };
+  function handleAddItemSubmit(itemName, imageUrl, weatherTemp) {
+    return postClothingItems(itemName, imageUrl, weatherTemp).then((item) => {
 
       setClothingItems([item, ...clothingItems]);
 
@@ -233,7 +227,8 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-  };
+    setCurrentUser({}); //set to empty object because null gives errors
+  }
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
@@ -338,6 +333,7 @@ function App() {
                 handleEscapeClose={handleEscapeClose}
                 isOpen={openModal === "item"}
                 openConfirmationModal={openConfirmationModal}
+                isLoggedIn={isLoggedIn}
               />
 
               <ConfirmationModal
@@ -353,7 +349,7 @@ function App() {
                 handleOffModalClick={handleOffModalClick}
                 handleEscapeClose={handleEscapeClose}
                 isOpen={openModal === "add-clothes"}
-                onAddItem={handleAdditemSubmit}
+                onAddItem={handleAddItemSubmit}
               />
 
               <LoginModal

@@ -1,9 +1,7 @@
 import { weatherApiKey } from "./constants.js";
 import { checkResponse } from "./api.js";
 
-function getWeatherData(locationlatitude, locationlongitude) {
-  const latitude = locationlatitude;
-  const longitude = locationlongitude;
+function getWeatherData(latitude, longitude) {
   const weatherApiRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey}`;
 
   return fetch(`${weatherApiRequest}`, {})
@@ -35,7 +33,7 @@ function filterWeatherData(response) {
   return extractedData;
 }
 
-function farenhiteTemperatureCheck(temperature) {
+function checkFahrenheitTemperature(temperature) {
   if (temperature >= 86) {
     return "hot";
   } else if (temperature >= 66) {
@@ -45,7 +43,7 @@ function farenhiteTemperatureCheck(temperature) {
   }
 }
 
-function celsiusTemperatureCheck(temperature) {
+function checkCelsiusTemperature(temperature) {
   if (temperature >= 30) {
     return "hot";
   } else if (temperature >= 18) {
@@ -55,12 +53,12 @@ function celsiusTemperatureCheck(temperature) {
   }
 }
 
-function temperatureCheck(temperature, tempUnit) {
+function checkTemperature(temperature, tempUnit) {
   if (tempUnit === "F") {
-    return farenhiteTemperatureCheck(temperature);
+    return checkFahrenheitTemperature(temperature);
   } else {
-    return celsiusTemperatureCheck(temperature);
+    return checkCelsiusTemperature(temperature);
   }
 }
 
-export { getWeatherData, filterWeatherData, temperatureCheck };
+export { getWeatherData, filterWeatherData, checkTemperature };

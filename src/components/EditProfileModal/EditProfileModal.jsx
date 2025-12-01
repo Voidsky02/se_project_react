@@ -14,13 +14,13 @@ const EditProfileModal = ({
   const userContext = useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newUserInfo = {
       name: name,
-      imageUrl: imageUrl,
+      avatar: avatar,
     };
     handleEditProfileSubmit(newUserInfo);
   };
@@ -28,7 +28,7 @@ const EditProfileModal = ({
   // get users info on load, and fill inputs with current data
   useEffect(() => {
     setName(userContext.name || "");
-    setImageUrl(userContext.avatar || "");
+    setAvatar(userContext.avatar || "");
   }, [userContext, isOpen]);
 
   return (
@@ -68,8 +68,8 @@ const EditProfileModal = ({
           name="edit-profile__avatar"
           type="url"
           placeholder="image url"
-          onChange={(evt) => setImageUrl(evt.target.value)}
-          value={imageUrl}
+          onChange={(evt) => setAvatar(evt.target.value)}
+          value={avatar}
           required
         ></input>
       </div>

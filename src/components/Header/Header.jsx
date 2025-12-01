@@ -25,65 +25,63 @@ function Header({
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <>
-      <div className="header">
-        <div className="header__left-side">
-          <Link to="/">
-            <img className="header__image" src={siteLogo} alt="site-logo" />
-          </Link>
-          <p className="header__date-location">{`${currentDate}, ${location}`}</p>
-        </div>
-        <div className="header__right-side">
-          <ToggleSwitch value={checked} onChange={onChange} />
-          {isLoggedIn ? (
-            <>
-              {/* rendered when logged in */}
-              <p
-                className="header__button"
-                type="button"
-                onClick={openClothesModal}
-              >
-                + Add Clothes
-              </p>
-              <Link to="/profile">
-                <div className="header__user">
-                  <p className="header__user-name">{currentUser.name}</p>
-                  {/* // if there is no image provided, set placeholder w/ the users  */}
-                  {/* first letter of name */}
-                  {currentUser.avatar ? (
-                    <img
-                      className="header__user-image"
-                      src={currentUser.avatar}
-                      alt="users profile picture"
-                    />
-                  ) : (
-                    <div className="header__user-image user-image__placeholder">
-                      {currentUser.name[0]}
-                    </div>
-                  )}
-                </div>
-              </Link>
-            </>
-          ) : (
-            <>
-              {/* rendered when logged out */}
-              <button
-                className="header__button"
-                onClick={() => openLogInModal()}
-              >
-                Sign In
-              </button>
-              <button
-                className="header__button"
-                onClick={() => openRegisterModal()}
-              >
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
+    <div className="header">
+      <div className="header__left-side">
+        <Link to="/">
+          <img className="header__image" src={siteLogo} alt="site-logo" />
+        </Link>
+        <p className="header__date-location">{`${currentDate}, ${location}`}</p>
       </div>
-    </>
+      <div className="header__right-side">
+        <ToggleSwitch value={checked} onChange={onChange} />
+        {isLoggedIn ? (
+          <>
+            {/* rendered when logged in */}
+            <button
+              className="header__button"
+              type="button"
+              onClick={openClothesModal}
+            >
+              + Add Clothes
+            </button>
+            <Link to="/profile">
+              <div className="header__user">
+                <p className="header__user-name">{currentUser.name}</p>
+                {/* // if there is no image provided, set placeholder w/ the users  */}
+                {/* first letter of name */}
+                {currentUser.avatar ? (
+                  <img
+                    className="header__user-image"
+                    src={currentUser.avatar}
+                    alt="users profile picture"
+                  />
+                ) : (
+                  <div className="header__user-image user-image__placeholder">
+                    {currentUser.name[0]}
+                  </div>
+                )}
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            {/* rendered when logged out */}
+            <button
+              className="header__button"
+              onClick={() => openLogInModal()}
+            >
+              Sign In
+            </button>
+            <button
+              className="header__button"
+              onClick={() => openRegisterModal()}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 
