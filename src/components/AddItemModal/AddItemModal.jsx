@@ -10,21 +10,20 @@ function AddItemModal({
   isOpen,
   onAddItem,
 }) {
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
+  
+  const { values, handleChange, resetForm } = useForm({ name: "", imageUrl: "", weather: "" });
 
-  const resetInputs = () => {
-    setName("");
-    setImageUrl("");
-    setWeather("");
-  };
+  // const resetInputs = () => {
+  //   setName("");
+  //   setImageUrl("");
+  //   setWeather("");
+  // };
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(name, imageUrl, weather)
+    onAddItem(values.name, values.imageUrl, values.weather)
       .then(() => {
-        return resetInputs();
+        return resetForm();
       })
       .catch((err) => {
         return alert(`Error ${err}: Could not submit clothing item`);
@@ -49,11 +48,11 @@ function AddItemModal({
         <input
           className="add-clothes__input add-clothes__input_type_text"
           id="add-clothes__name"
-          name="add-clothes__name"
+          name="name"
           type="text"
           placeholder="Name"
-          onChange={(evt) => setName(evt.target.value)}
-          value={name}
+          onChange={handleChange}
+          value={values.name}
           required
         ></input>
       </div>
@@ -64,11 +63,11 @@ function AddItemModal({
         <input
           className="add-clothes__input add-clothes__input_type_text"
           id="add-clothes__image"
-          name="add-clothes__image"
+          name="imageUrl"
           type="url"
           placeholder="Image URL"
-          onChange={(evt) => setImageUrl(evt.target.value)}
-          value={imageUrl}
+          onChange={handleChange}
+          value={values.imageUrl}
           required
         ></input>
       </div>
@@ -81,8 +80,8 @@ function AddItemModal({
             name="weather"
             type="radio"
             value="hot"
-            onChange={(evt) => setWeather(evt.target.value)}
-            checked={weather === "hot"}
+            onChange={handleChange}
+            checked={values.weather === "hot"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="hot">
             Hot
@@ -95,8 +94,8 @@ function AddItemModal({
             name="weather"
             type="radio"
             value="warm"
-            onChange={(evt) => setWeather(evt.target.value)}
-            checked={weather === "warm"}
+            onChange={handleChange}
+            checked={values.weather === "warm"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="warm">
             Warm
@@ -109,8 +108,8 @@ function AddItemModal({
             name="weather"
             type="radio"
             value="cold"
-            onChange={(evt) => setWeather(evt.target.value)}
-            checked={weather === "cold"}
+            onChange={handleChange}
+            checked={values.weather === "cold"}
           ></input>
           <label className="add-clothes__label_type_radio" htmlFor="cold">
             Cold

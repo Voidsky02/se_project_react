@@ -8,7 +8,7 @@ function useForm(initialValues) {
         setValues({ ...values, [name]: value });
     }
 
-    const handleReset = () => {
+    const resetForm = () => {
         setValues(initialValues);
     }
 
@@ -16,7 +16,7 @@ function useForm(initialValues) {
         values,
         setValues,
         handleChange,
-        handleReset,
+        resetForm,
     };
 }
 
