@@ -1,6 +1,6 @@
-import { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useForm from "../../hooks/useForm.js";
 
 const LoginModal = ({
   closeModal,
@@ -9,19 +9,14 @@ const LoginModal = ({
   isOpen,
   onSignIn,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const resetInputs = () => {
-    setEmail("");
-    setPassword("");
-  };
+  
+  const { values, handleChange, resetForm } = useForm({ email: "", password: "" });
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onSignIn({ email, password })
+    onSignIn(values)
       .then(() => {
-        return resetInputs();
+        return resetForm();
       })
       .catch((err) => {
         return alert(`Error ${err}: Could not submit clothing item`);
@@ -44,13 +39,13 @@ const LoginModal = ({
           Email
         </label>
         <input
-          className="log-in__input log-in__input_type_text  "
+          className="log-in__input log-in__input_type_text"
           id="log-in__email"
-          name="log-in__email"
+          name="email"
           type="email"
           placeholder="Email"
-          onChange={(evt) => setEmail(evt.target.value)}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
           required
         />
       </div>
@@ -61,11 +56,11 @@ const LoginModal = ({
         <input
           className="log-in__input log-in__input_type_text"
           id="log-in__password"
-          name="log-in__password"
+          name="password"
           type="password"
-          placeholder="Email"
-          onChange={(evt) => setPassword(evt.target.value)}
-          value={password}
+          placeholder="Password"
+          onChange={handleChange}
+          value={values.password}
           required
         />
       </div>

@@ -4,7 +4,7 @@ import "./ItemCard.css";
 
 function ItemCard({ handleCardClick, item, onCardLike, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked = currentUser?._id && item?.likes?.some((id) => id === currentUser._id);
 
   // pass item data in same way we did handleClick()
   const handleLike = (event) => {

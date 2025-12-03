@@ -25,7 +25,7 @@ function Header({
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="header__left-side">
         <Link to="/">
           <img className="header__image" src={siteLogo} alt="site-logo" />
@@ -81,7 +81,7 @@ function Header({
           </>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 

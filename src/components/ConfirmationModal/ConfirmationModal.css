@@ -17,6 +17,11 @@
   top: 20px;
   right: 20px;
   background-image: url("src/images/close-btn-grey.svg");
+  opacity: 50%;
+}
+
+.modal__close-btn.confirmation-modal__close-btn:hover {
+  opacity: 100%;
 }
 
 .modal__title.modal__title_type_confirmation {

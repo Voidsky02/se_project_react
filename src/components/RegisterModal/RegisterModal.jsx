@@ -1,6 +1,6 @@
-import { useState } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useForm from "../../hooks/useForm.js";
 
 const RegisterModal = ({
   closeModal,
@@ -9,23 +9,14 @@ const RegisterModal = ({
   isOpen,
   onSignUp,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
 
-  const resetInputs = () => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setAvatar("");
-  };
+  const { values, handleChange, resetForm } = useForm({email: "", password: "", name: "", avatar: "" });
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onSignUp({ name, avatar, email, password })
+    onSignUp(values)
       .then(() => {
-        return resetInputs();
+        return resetForm();
       })
       .catch((err) => {
         return alert(`Error ${err}: Could not register user`);
@@ -48,13 +39,13 @@ const RegisterModal = ({
           Email
         </label>
         <input
-          className="sign-up__input sign-up__input_type_text  "
+          className="sign-up__input sign-up__input_type_text"
           id="sign-up__email"
-          name="sign-up__email"
+          name="email"
           type="email"
           placeholder="Email"
-          onChange={(evt) => setEmail(evt.target.value)}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
           required
         />
       </div>
@@ -65,11 +56,11 @@ const RegisterModal = ({
         <input
           className="sign-up__input sign-up__input_type_text"
           id="sign-up__password"
-          name="sign-up__password"
+          name="password"
           type="password"
-          placeholder="Email"
-          onChange={(evt) => setPassword(evt.target.value)}
-          value={password}
+          placeholder="Password"
+          onChange={handleChange}
+          value={values.password}
           required
         />
       </div>
@@ -80,11 +71,11 @@ const RegisterModal = ({
         <input
           className="sign-up__input sign-up__input_type_text"
           id="sign-up__name"
-          name="sign-up__name"
+          name="name"
           type="text"
           placeholder="Name"
-          onChange={(evt) => setName(evt.target.value)}
-          value={name}
+          onChange={handleChange}
+          value={values.name}
           required
         />
       </div>
@@ -95,11 +86,11 @@ const RegisterModal = ({
         <input
           className="sign-up__input sign-up__input_type_text"
           id="sign-up__avatar"
-          name="sign-up__avatar"
+          name="avatar"
           type="url"
           placeholder="Avatar URL"
-          onChange={(evt) => setAvatar(evt.target.value)}
-          value={avatar}
+          onChange={handleChange}
+          value={values.avatar}
           required
         />
       </div>

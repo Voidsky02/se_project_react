@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function useForm(initialValues) {
+function useForm(initialValues, prefillData = null) {
     const [values, setValues] = useState(initialValues);
+
+    useEffect(() => {
+        if (prefillData) {
+            setValues(prefillData);
+        }
+    }, [prefillData]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;

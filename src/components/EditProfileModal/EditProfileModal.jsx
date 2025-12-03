@@ -1,7 +1,8 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import useForm from "../../hooks/useForm.js";
 
 const EditProfileModal = ({
   closeModal,
@@ -11,25 +12,14 @@ const EditProfileModal = ({
   handleEditProfileSubmit,
 }) => {
   // used to autofill current user information
-  const userContext = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const { values, handleChange} = useForm({ name: "", avatar: "" }, isOpen ? currentUser : null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newUserInfo = {
-      name: name,
-      avatar: avatar,
-    };
-    handleEditProfileSubmit(newUserInfo);
+    handleEditProfileSubmit(values);
   };
-
-  // get users info on load, and fill inputs with current data
-  useEffect(() => {
-    setName(userContext.name || "");
-    setAvatar(userContext.avatar || "");
-  }, [userContext, isOpen]);
 
   return (
     <ModalWithForm
@@ -49,11 +39,11 @@ const EditProfileModal = ({
         <input
           className="edit-profile__input edit-profile__input_type_text"
           id="edit-profile__name"
-          name="edit-profile__name"
+          name="name"
           type="text"
           placeholder="Name"
-          onChange={(evt) => setName(evt.target.value)}
-          value={name}
+          onChange={handleChange}
+          value={values.name}
           required
         ></input>
       </div>
@@ -65,11 +55,11 @@ const EditProfileModal = ({
         <input
           className="edit-profile__input edit-profile__input_type_text"
           id="edit-profile__avatar"
-          name="edit-profile__avatar"
+          name="avatar"
           type="url"
           placeholder="image url"
-          onChange={(evt) => setAvatar(evt.target.value)}
-          value={avatar}
+          onChange={handleChange}
+          value={values.avatar}
           required
         ></input>
       </div>
