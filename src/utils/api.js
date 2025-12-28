@@ -76,7 +76,7 @@ const updateUserData = ({ name, imageUrl }) => {
 // first argument is cards id
 const addCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       authorization: `Bearer ${token}`,
     },
