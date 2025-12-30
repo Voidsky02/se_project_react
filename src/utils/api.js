@@ -6,9 +6,11 @@ const checkResponse = (res) => {
     : Promise.reject(`checkResponse Failure -> Error: ${res.status}`);
 };
 
+//! Missing ID, so will fail due to Joi/Celebrate middleware
 function getClothingItems() {
   return fetch(`${baseUrl}/items`, {})
     .then((res) => {
+      console.log(res);
       return checkResponse(res);
     })
     .then((data) => {
@@ -76,7 +78,7 @@ const updateUserData = ({ name, imageUrl }) => {
 // first argument is cards id
 const addCardLike = (id, token) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PATCH",
+    method: "PUT",
     headers: {
       authorization: `Bearer ${token}`,
     },
